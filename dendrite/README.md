@@ -51,6 +51,7 @@ f(\varphi, m)=\frac{1}{4} \varphi^4-\left(\frac{1}{2}-\frac{1}{3} m\right) \varp
 $$
 
 The interfacial anisotropy is directional dependent. It is
+
 $$
 \varepsilon=\bar{\varepsilon} \sigma(\theta)
 $$
@@ -60,6 +61,7 @@ $\bar{\varepsilon}$ is a mean value of $\varepsilon$. The anisotropy $\sigma(\th
 $$ \sigma(\theta)= 1 + \delta cos(j(\theta - \theta_0)) $$
 
 The angle is given by
+
 $$
 \theta=\tan ^{-1}\left(\frac{\partial \varphi / \partial y}{\partial \varphi / \partial x}\right)
 $$
@@ -67,6 +69,7 @@ $$
 The parameter $m$ is given by
 
 $$ m(T) = \left(\frac{\alpha}{\pi} \right) \tan^{-1}[\gamma(T_{eq} - T)]$$
+
 **The Allen-Cahn equation** for evolution is
 
 $$
@@ -80,6 +83,7 @@ $$
 $$
 
 **The evolution of temperature field**
+
 $$
 \frac{\partial T}{\partial t}=\nabla^2 T+\kappa \frac{\partial \varphi}{\partial t}
 $$
@@ -340,13 +344,30 @@ The temporal and spatial discretization starts here. Note the use of statement l
      do i = 1, Nx
         do j = 1, Ny
 ```
-This calculates $\nabla^2 \phi$ and $\nabla^2 T$, the angle, $
+This calculates $\nabla^2 \phi$ and $\nabla^2 T$, 
+
+the angle,
+
+$$
 \theta=\tan ^{-1}\left(\frac{\partial \varphi / \partial y}{\partial \varphi / \partial x}\right)
-$, $\varepsilon$ i.e., $\varepsilon=\bar{\varepsilon} \sigma(\theta) $ and its derivate $ \frac{\partial \varepsilon}{\partial \theta}$
+$$ 
 
+$\varepsilon$ 
 
+i.e.,
+
+$$
+\varepsilon=\bar{\varepsilon} \sigma(\theta) 
+$$ 
+
+and its derivate 
+
+$$
+\frac{\partial \varepsilon}{\partial \theta}
+$$
 
 Notice the use of **if** statement instead of **if then** construct. It reduces the code size.
+
 ```Fortran
            jp = j + 1
            jm = j - 1
@@ -391,12 +412,11 @@ $$
 \frac{\partial}{\partial y}\left(\varepsilon \frac{\partial \varepsilon}{\partial \theta} \frac{\partial \varphi}{\partial x}\right)
 $$
 
-**term2** is evaluated as
-$$\frac{\partial}{\partial x}\left(\varepsilon \frac{\partial \varepsilon}{\partial \theta} \frac{\partial \varphi}{\partial y}\right) 
+**term2** 
+
 $$
-**m** is evaluated as
- $$ m(T) = \frac{\alpha}{\varphi} \tan^{-1}[\gamma(T_{eq} - T)] 
- $$.
+\frac{\partial}{\partial x}\left(\varepsilon \frac{\partial \varepsilon}{\partial \theta} \frac{\partial \varphi}{\partial y}\right)
+$$
 
 ```Fortran
      do i = 1, Nx
@@ -479,7 +499,7 @@ This part prints the computed time on the screen
 ```
 This plots the dislin color plot for both order parameters, and the last statement terminates the program. Note it is only in the file **fd_dislin_dislin.f90**
 
- <span style="color:green">call metafl ( 'cons' ) </span> displays the output on the console. <span style="color:green">call scrmod ( 'REVERS' ) </span> will make the background white, the default is black. The dislin is initiated with the routine <span style="color:green">call disini ( )</span>.  <span style="color:green">call complx (  ) </span> sets the complex font. <span style="color:green"> call axspos ( 350, 1700 ) </span> defines the axis position,  <span style="color:green"> call ax3len ( 600, 600, 600 )</span> define the axis position and the axis length of the colored axis system. The routine <span style="color:green"> call graf3 ( ) </span> plots the 3D axis system with Z axis as a color bar. <span style="color:green">call crvmat ( ) </span> plots color surface of the matrix. <span style="color:green"> call endgrf ( ) </span> terminates the axis system. The dislin routine is finished with the routine <span style="color:green">call disfin ( ) </span>
+ <span style="color:green">**call metafl ( 'cons' )** </span> displays the output on the console. <span style="color:green">**call scrmod ( 'REVERS' )** </span> will make the background white, the default is black. The dislin is initiated with the routine <span style="color:green">**call disini ( )**</span>.  <span style="color:green">**call complx (  )** </span> sets the complex font. <span style="color:green"> **call axspos ( 350, 1700 )** </span> defines the axis position,  <span style="color:green"> **call ax3len ( 600, 600, 600 )**</span> define the axis position and the axis length of the colored axis system. The routine <span style="color:green"> **call graf3 ( )** </span> plots the 3D axis system with Z axis as a color bar. <span style="color:green">**call crvmat ( )** </span> plots color surface of the matrix. <span style="color:green"> **call endgrf ( )** </span> terminates the axis system. The dislin routine is finished with the routine <span style="color:green">**call disfin ( )** </span>
 
 ```Fortran
   !--- dislin multiplot
