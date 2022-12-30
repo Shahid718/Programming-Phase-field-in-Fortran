@@ -14,11 +14,11 @@ The first part describes the phase-field model. Next part presents the numerical
 
 ### **Free energy function**
 
-The total free energy ***$F$*** is given by
+The total free energy **$F$** is given by
 
 $$ F=\int\left[f\left(\phi\right)+\kappa\left(\nabla \phi\right)^2\right]dV$$
 
-Where ***$f(\phi)$*** is the bulk chemical free energy density, ***$\phi$*** is the non-conserved order parameter, $\kappa$ is gradient energy coefficient. 
+Where **$f(\phi)$** is the bulk chemical free energy density, **$\phi$** is the non-conserved order parameter, $\kappa$ is gradient energy coefficient. 
 
 The bulk free energy is 
 
@@ -33,9 +33,9 @@ The evolution of conserved order parameter is  is linearly proportional to the v
 
 $$\frac{\partial \phi}{\partial t}=-L \frac{\delta F}{\delta \phi}$$
 
-***$L$*** is mobility
+**$L$** is mobility
 
-The variational derivative of ***$F$*** is
+The variational derivative of **$F$** is
 
 $$\frac{\delta F}{\partial \phi}=\left(\frac{\partial f}{\partial \phi}-\kappa \nabla^2 \phi\right)$$
 
@@ -44,6 +44,7 @@ The evolution equation now becomes
 $$\frac{\partial \phi}{\partial t}=-L\left(\frac{\partial f}{\partial \phi}-\kappa \nabla^2 \phi\right)$$
 
 The derivative of free energy function is 
+
 $$ \frac{\partial f}{\partial \phi}= A\left( 2\phi(1-\phi)^2 (1-2\phi) \right) $$
 
 # **Numerical method**
