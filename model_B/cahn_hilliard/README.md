@@ -48,16 +48,18 @@ $$\frac{\partial c}{\partial t}=\nabla^2M  \frac{\delta F}{\delta c}$$
 
 The variational derivative of **$F$** is
 
-
 $$\frac{\delta F}{\partial c}=\left(\frac{\partial f}{\partial c}-\kappa \nabla^2 c\right)$$
 
-where $$ \frac{\partial f}{\partial c}= \mu  $$ is chemical potential
+where
+
+$$ \frac{\partial f}{\partial c}= \mu  $$ is chemical potential
 
 The evolution equation now becomes
 
 $$\frac{\partial c}{\partial t}=\nabla^2M\left(\frac{\partial f}{\partial c}-\kappa \nabla^2 c\right)$$
 
 The derivative of free energy function is 
+
 $$ \frac{\partial f}{\partial c}= A\left( 2c(1-c)^2 - 2c^2(1-c) \right) $$
 
 # **Numerical method**
