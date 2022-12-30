@@ -279,7 +279,7 @@ The glist is initlialized here
 ```
 
 ### **Evolution**
-Since the code shows the continous color plot, a few dislin subroutines are called here. The first one <span style="color:green">call scrmod ( 'REVERS' ) </span> will make the background white, the default is black. The second one <span style="color:green">call metafl ( 'cons' ) </span> displays the output on the console. After these two routines the dislin is initiated with the routine <span style="color:green">call disini ( )</span>. 
+Since the code shows the continous color plot, a few dislin subroutines are called here. The first one <span style="color:green">**call scrmod ( 'REVERS' )** </span> will make the background white, the default is black. The second one <span style="color:green">**call metafl ( 'cons' )** </span> displays the output on the console. After these two routines the dislin is initiated with the routine <span style="color:green">**call disini ( )**</span>. 
 
 ```Fortran
   !--- starts microstructure evolution
