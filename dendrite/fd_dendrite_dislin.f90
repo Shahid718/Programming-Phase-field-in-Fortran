@@ -3,6 +3,9 @@
 !   Finite Difference Phase Field Code of Dendrite Solidification.
 !
 !   The program uses Dislin plotting library.
+!
+!   Author  :
+!              Shahid Maqbool
 ! 
 !   Modified   :
 !                    22 December 2022
