@@ -1,0 +1,27 @@
+set term qt 0 size 600,600
+set multiplot layout 1,2 margins 0.1,0.9,0.1,0.9 spacing 0.15
+set size ratio 1
+set xrange [*:*] noextend
+set yrange [*:*] noextend
+set view map
+set pm3d map interpolate 10,10
+set palette rgbformulae 33,13,10
+set cbrange[0:1]
+unset key
+unset xtics
+unset ytics
+unset border
+# ----------------------------------------------------------------
+set title 'Phi' font ',14'
+set label 1 '(a)' at 5,275 front font ' , 14' tc 'black' boxed
+set style textbox opaque fc "white" noborder
+splot 'phi.dat' matrix with pm3d
+unset label 1
+# -----------------------------------------------------------------
+set title 'Temperature' font ',14'
+set label 2 '(b)' at 5,275 front font ' , 14' tc 'black' boxed
+set style textbox opaque fc "white" noborder
+splot 'temperature.dat' matrix with pm3d
+unset label 2
+# -----------------------------------------------------------------
+unset multiplot
