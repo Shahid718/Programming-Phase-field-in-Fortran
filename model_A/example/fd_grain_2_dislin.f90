@@ -2,6 +2,8 @@
 !      
 !   Fortran Finite Difference Phase Field Code for 2 Grains.
 !
+!   The program  uses Dislin plotting library
+!
 !   Author :
 !               Shahid Maqbool
 !
