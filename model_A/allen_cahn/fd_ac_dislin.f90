@@ -2,6 +2,8 @@
 !      
 !   Finite Difference Phase Field Code of Allen-Cahn Equation.
 !
+!   The program  uses Dislin plotting library
+!
 !   Author :
 !               Shahid Maqbool
 !
