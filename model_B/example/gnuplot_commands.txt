@@ -1,0 +1,11 @@
+set view map
+set size square
+set xrange [*:*] noextend
+set yrange [*:*] noextend
+set key title 'Cr' at 147, 138
+set title 'Fe-Cr'font ',18'
+set xlabel ' Nx ' font ',14'
+set ylabel ' Ny ' font ',14'
+set palette defined ( 0 'blue', 0.5 'grey', 1 'red' )
+set pm3d map interpolate 9,9
+splot 'feCr.dat' matrix with pm3d notitle
