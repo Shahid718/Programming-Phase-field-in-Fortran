@@ -186,15 +186,15 @@ program fd_ac_test
 ```
 ### **Data declaration**
 
-The simulation cell size is 128 $\times$ 128. The larger cell size increases the computational cost and if desired could be modified here. The grid spacing i.e., **dx** and **dy** is 1.0
+The simulation cell size is 128 $\times$ 128. The larger cell size increases the computational cost and if desired could be modified here. The grid spacing i.e., **dx** and **dy** is 2
 
 ```Fortran
   !-- simulation cell parameters
 
   integer ( kind = 4 ), parameter :: Nx = 128
   integer ( kind = 4 ), parameter :: Ny = 128
-  integer ( kind = 4 ), parameter :: dx = 1
-  integer ( kind = 4 ), parameter :: dy = 1
+  integer ( kind = 4 ), parameter :: dx = 2
+  integer ( kind = 4 ), parameter :: dy = 2
 ```
 This section declares the desired number of steps and the output frequency of the timesteps. The input arguments for start and end time calculations are declared here too.
 
