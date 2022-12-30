@@ -80,13 +80,13 @@ Graphically it is
 
 Using explicit Euler time marching scheme, the evolution equation becomes
 
-$$\frac{c_{ij}^{n+1}-c_{ij}^n}{\Delta t}= \nabla^2M \cdot \left(\frac{\delta F}{\delta c}\right)^{n+1}$$
+$$\frac{c_{ij}^{n+1}-c_{ij}^n}{\Delta t}= \nabla^2M \cdot \left(\frac{\delta F}{\delta c}\right)^{n}$$
 
-$$\left(\frac{\delta F}{\delta c}\right)^{n+1} = \frac{\partial f}{\partial {c_{ij}^{n+1}}}-\kappa \nabla^2 {c_{ij}^{n+1}}$$
+$$\left(\frac{\delta F}{\delta c}\right)^{n} = \frac{\partial f}{\partial {c_{ij}^{n}}}-\kappa \nabla^2 {c_{ij}^{n}}$$
 
 after rearrangement
 
-$$ {c_{ij}^{n+1} } = c_{ij}^n + \nabla^2M \cdot \Delta t \left( \frac{\partial f}{\partial {c_{ij}^{n+1}}}-\kappa \nabla^2 {c_{ij}^{n+1}} \right)$$
+$$ {c_{ij}^{n+1} } = c_{ij}^n + \nabla^2M \Delta t \left( \frac{\partial f}{\partial {c_{ij}^{n}}}-\kappa \nabla^2 {c_{ij}^{n}} \right)$$
 
 # **Fortran implementation**
 
