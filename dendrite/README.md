@@ -248,7 +248,7 @@ program fd_Kobayashi_model_test
 ```
 ### **Data declaration**
 
-The simulation cell size is 128 $\times$ 128. The grid spacing i.e., **dx** and **dy** is 0.03. 
+The simulation cell size is 300 $\times$ 300. The grid spacing i.e., **dx** and **dy** is 0.03. 
 
 ```Fortran
   !--- simulation cell parameters
