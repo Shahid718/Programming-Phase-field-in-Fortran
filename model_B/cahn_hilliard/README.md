@@ -24,11 +24,11 @@ https://link.springer.com/book/10.1007/978-3-319-41196-5
 
 ### **Free energy function**
 
-The total free energy ***$F$*** is given by
+The total free energy **$F$** is given by
 
 $$ F=\int\left[f\left(c\right)+\kappa\left(\nabla c\right)^2\right]dV$$
 
-Where ***$f(c)$*** is the bulk chemical free energy density, ***$c$*** is the concentration as a conserved order parameter, $\kappa$ is gradient energy coefficient. 
+Where **$f(c)$** is the bulk chemical free energy density, **$c$** is the concentration as a conserved order parameter, $\kappa$ is gradient energy coefficient. 
 
 The bulk free energy is 
 
@@ -39,13 +39,14 @@ $A$ is the barrier height.
 ### **Equation of evolution**
 
 The evolution of conserved order parameter is  is linearly proportional to the variational derivative of free energy function . Mathematically it is
+
 $$	\frac{{\partial c}}{\partial t}=\nabla\left[M\nabla\left(\frac{\delta F}{\delta c}\right)\right]$$
 
 $$\frac{\partial c}{\partial t}=\nabla^2M  \frac{\delta F}{\delta c}$$
 
-***$M$*** is mobility
+**$M$** is mobility
 
-The variational derivative of ***$F$*** is
+The variational derivative of **$F$** is
 
 
 $$\frac{\delta F}{\partial c}=\left(\frac{\partial f}{\partial c}-\kappa \nabla^2 c\right)$$
