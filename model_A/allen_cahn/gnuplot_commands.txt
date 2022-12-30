@@ -1,0 +1,11 @@
+set view map
+set size square
+set xrange [*:*] noextend
+set yrange [*:*] noextend
+set key title 'phi' at 143, 138
+set title 'Allen-Cahn'font ',18'
+set xlabel 'Nx' font ',14'
+set ylabel 'Ny' font ',14'
+set palette rgbformulae 33,13,10
+set pm3d map interpolate 9,9
+splot 'ac.dat' matrix with pm3d notitle

@@ -1,0 +1,15 @@
+set terminal gif animate delay 0.01  
+set view map 
+set size square 
+set xrange [*:*] noextend 
+set yrange [*:*] noextend 
+set palette defined (0 'blue', 0.5 'grey', 1 'red') 
+set pm3d map interpolate 9,9 
+set out 'gnuplot_animation_grain.gif' 
+n=500 
+while (n <=5000) {   
+fname = sprintf('grain_%d.dat', n ) 
+splot fname matrix with pm3d notitle  
+n=n+500 
+ } 
+unset output 
