@@ -93,8 +93,6 @@ program fd_ac_test
            if ( phi(i,j) >= 0.99999 ) phi(i,j) = 0.99999
            if ( phi(i,j) < 0.00001 )  phi(i,j) = 0.00001
 
-           !--- end microstructure evolution
-
         end do column
      end do row
 
