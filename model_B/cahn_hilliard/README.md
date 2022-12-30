@@ -52,7 +52,9 @@ $$\frac{\delta F}{\partial c}=\left(\frac{\partial f}{\partial c}-\kappa \nabla^
 
 where
 
-$$ \frac{\partial f}{\partial c}= \mu  $$ is chemical potential
+$$ \frac{\partial f}{\partial c}= \mu $$ 
+
+is chemical potential
 
 The evolution equation now becomes
 
