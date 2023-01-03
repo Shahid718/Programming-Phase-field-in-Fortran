@@ -122,7 +122,7 @@ and to run, enter
 
 <div style="text-align: center;">
 
-![Output](images/dislin_gif.gif)!
+![Output](images/dislin_gif.gif)
 </div>
 
 ## **without Dislin**
