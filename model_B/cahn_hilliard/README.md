@@ -177,7 +177,7 @@ set palette defined ( 0 'blue', 0.5 'grey', 1 'red' )
 set pm3d map interpolate 9,9
 splot 'ch.dat' matrix with pm3d notitle
 ```
-The first line is the path where the file is located. In our case it is placed in **D** drive. The rest of the commands remain the same!
+The first line is the path where the file is located. In our case it is placed in `D` drive. The rest of the commands remain the same!
 
 The output is
 
@@ -203,7 +203,7 @@ program fd_ch_test
 ```
 ### **Data declaration**
 
-The simulation cell size is 64 $\times$ 64. The larger cell size increases the computational cost and if desired could be modified here. The grid spacing i.e., **dx** and **dy** is 1.0
+The simulation cell size is 64 $\times$ 64. The larger cell size increases the computational cost and if desired could be modified here. The grid spacing i.e., `dx` and `dy` is 1.0
 
 ```Fortran
   !-- simulation cell parameters
@@ -213,7 +213,7 @@ The simulation cell size is 64 $\times$ 64. The larger cell size increases the c
   integer ( kind = 4 ), parameter :: dx = 1
   integer ( kind = 4 ), parameter :: dy = 1
 ```
-Here this part declares number of computed time steps and output frequency **nprint** to print the output done step every 1000 times steps. Other parameters are time increment **dt** and the **start** and **finish** to calculate the time of the code execution.
+Here this part declares number of computed time steps and output frequency `nprint` to print the output done step every 1000 times steps. Other parameters are time increment `dt` and the `start` and `finish` to calculate the time of the code execution.
 
 ```Fortran
   !--- time integration parameters
@@ -225,7 +225,7 @@ Here this part declares number of computed time steps and output frequency **npr
   real    ( kind = 8 )            :: start, finish
 ```
 
-This part is related to the microstructure parameters such as the initial concentration **c0**, the gradient coefficient, and the mobility.
+This part is related to the microstructure parameters such as the initial concentration `c0`, the `gradient coefficient`, and the `mobility`.
 
 ```Fortran
   !--- material specific parameters
@@ -234,7 +234,7 @@ This part is related to the microstructure parameters such as the initial concen
   real ( kind = 8 )   , parameter :: mobility = 1.0
   real ( kind = 8 )   , parameter :: grad_coef = 0.5
 ```
-We define the microstructure parameters in this declaration. **noise=0.02** is the thermal fluctuation, **A** is the height of the energy barrier. **i, j, jp, jm, ip, im** are the spatial discretization variables. **r** is for random number, 2 dimensional **con** variable stores the evolution of the concentration. **lap_con**, **dummy_con**, **lap_dummy** are 2 dimensional variable arrays for laplace evaluation. **dfdcon** is a 2 dimensional array to store the derivative of free energy.
+We define the microstructure parameters in this declaration. `noise=0.02` is the thermal fluctuation, `A` is the height of the energy barrier. `i, j, jp, jm, ip, im` are the spatial discretization variables. `r` is for random number, 2 dimensional `con` variable stores the evolution of the concentration. `lap_con`, `dummy_con`, `lap_dummy` are 2 dimensional variable arrays for laplace evaluation. `dfdcon` is a 2 dimensional array to store the derivative of free energy.
 
 ```Fortran
   !--- microstructure parameters
@@ -250,14 +250,14 @@ This statement will open the file **ch.dat**. The output value of concentration 
 ```Fortran
   open ( 1, file = "ch.dat" )
 ```
-This statement (intrinsic subroutine call) is used for the initial time of the program. The input argument **start** is the starting time of the code execution.
+This statement (intrinsic subroutine call) is used for the initial time of the program. The input argument `start` is the starting time of the code execution.
 
 ```Fortran
   call cpu_time ( start )
 ```
 ### **Initial microstructure**
 
-The section implements the initial microsturucture. **call random_number ( r )** is a subroutine to store the random numbers in a 2 dimensional variable **r**
+The section implements the initial microsturucture. `call random_number ( r )` is a subroutine to store the random numbers in a 2 dimensional variable `r`
 
 ```Fortran
   !--- initial microstructure
@@ -268,7 +268,7 @@ The section implements the initial microsturucture. **call random_number ( r )**
 ```
 ### **Evolution**
 
-This part starts the evaluation at each time step for all grid points. **time_loop** is the statement label for the time do loop. **row** and **column** are statment labels for i and j do loops respectively.
+This part starts the evaluation at each time step for all grid points. `time_loop` is the statement label for the time do loop. `row` and `column` are statment labels for i and j do loops respectively.
 
 ```Fortran
   !--- start microstructure evolution
@@ -278,14 +278,17 @@ This part starts the evaluation at each time step for all grid points. **time_lo
      row: do i = 1, Nx
         column: do j = 1, Ny
 ```
+
 This evaluates the derivative of free energy at each grid point
+
 ```Fortran
            !--- free energy derivative
 
            dfdcon(i,j) = A*( 2.0*con(i,j)*( 1.0 - con(i,j) )**2 &
                 - 2.0*con(i,j)**2*( 1.0 - con(i,j) ) )
 ```
-This calculates Laplacian. Notice the use of **if** statement instead of **if then** construct. It reduces the code size.
+
+This calculates Laplacian. Notice the use of `if` statement instead of `if then` construct. It reduces the code size.
 
 ```Fortran
            !--- laplace evaluation
@@ -308,7 +311,6 @@ This calculates Laplacian. Notice the use of **if** statement instead of **if th
 
            lap_dummy(i,j) = ( dummy_con(ip,j) + dummy_con(im,j) + dummy_con(i,jm) &
                 + dummy_con(i,jp) - 4.0*dummy_con(i,j) ) / ( dx*dy )
-
 ```
 
 This implements Explicit Euler finite difference 
@@ -319,7 +321,7 @@ This implements Explicit Euler finite difference
            con(i,j) =  con(i,j) + dt*mobility*lap_dummy(i,j)
 ```
 
-This maintains the order parameters between **0** and **1**. The evaluation at each grid point finishes in this section. Note the use of statement labels for row and column do loop. It makes it easy to follow which do loop is ended here.
+This maintains the order parameters between `0` and `1`. The evaluation at each grid point finishes in this section. Note the use of statement labels for row and column do loop. It makes it easy to follow which do loop is ended here.
 
 ```Fortran
            !--- for small deviations
@@ -331,20 +333,23 @@ This maintains the order parameters between **0** and **1**. The evaluation at e
      end do row
 ```
 
-This section of the code prints the **done steps** on the screen.
+This section of the code prints the `done steps` on the screen.
 
 ```Fortran
     !--- print steps
 
      if ( mod( tsteps, nprint ) .eq. 0 ) print *, 'Done steps  =  ', tsteps
 ```
+
 The microstructure evolution finishes here
+
 ```Fortran
      !--- end microstructure evolution
 
   end do time_loop
 ```
-It takes the final time used for calculation, writes the value of **concentration** in the file **ch.dat** and closes the file.
+
+It takes the final time used for calculation, writes the value of `concentration` in the file **ch.dat** and closes the file.
 
 ```Fortran
   call cpu_time ( finish )
@@ -357,6 +362,7 @@ It takes the final time used for calculation, writes the value of **concentratio
 
   close( 1 )
 ```
+
 This is the quick dislin plot in colors and the last statement terminates the program. It is only in the file **fd_ch_dislin.f90**
 
 ```Fortran
@@ -369,7 +375,7 @@ end program fd_ch_test
 
 # **gfortran vs intel for 256 x 256 simulation size**
 
-To compare the compute time at both compilers we used the file **fd_ch.f90** and increased the simulation size to 256 $\times$ 256 i.e. Nx = 256 and Ny = 256. The following statements were commented too as.
+To compare the compute time at both compilers we used the file **fd_ch.f90** and increased the simulation size to 256 $\times$ 256 i.e. `Nx = 256` and `Ny = 256`. The following statements were commented too as.
 
 ```Fortran
   ! open ( 1, file = "ch.dat" )
