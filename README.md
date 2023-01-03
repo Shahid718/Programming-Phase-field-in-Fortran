@@ -59,10 +59,10 @@ ___
 
 The simulations were performed on the system with following details
 
-|                OS        |      Compilers and versions                   |  Integrated graphics library |  Output graphics library  |
-| -----------------------  | ------------------------------------------    |------------------------------ |----------------------------|
-| Linux ( ubuntu 20.04 )   |     gfortran ( 12.1.0 )                       |  Dislin ( 11.5 )              |     gnuplot ( 5.4 )        |
-| Windows ( 10, 64 bit )   |     gfortran ( 12.1.0 ), intel ( 2021.6.0 )   |  Dislin ( 11.5 )              |     gnuplot ( 5.4 )        |
+|                OS      |      Compilers and versions               |  Integrated graphics library  |  Output graphics library   |
+| -----------------------| ----------------------------------------- |------------------------------ |----------------------------|
+| Linux (ubuntu 20.04)   |     gfortran (12.1.0)                     |  Dislin ( 11.5 )              |     gnuplot ( 5.4 )        |
+| Windows (10, 64 bit)   |     gfortran (12.1.0), intel (2021.6.0)   |  Dislin ( 11.5 )              |     gnuplot ( 5.4 )        |
 
 
 ## **Future work**
