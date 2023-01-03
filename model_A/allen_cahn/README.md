@@ -186,7 +186,7 @@ program fd_ac_test
 ```
 ### **Data declaration**
 
-The simulation cell size is 128 $\times$ 128. The larger cell size increases the computational cost and if desired could be modified here. The grid spacing i.e., **dx** and **dy** is 2
+The simulation cell size is 128 $\times$ 128. The larger cell size increases the computational cost and if desired could be modified here. The grid spacing i.e., `dx` and `dy` is 2
 
 ```Fortran
   !-- simulation cell parameters
@@ -217,7 +217,7 @@ This part is related to the microstructure parameters. The section defines the i
   real ( kind = 8 )   , parameter :: mobility = 1.0
   real ( kind = 8 )   , parameter :: grad_coef = 1.0
 ```
-We define the microstructure parameters in this declaration. **noise** is the thermal fluctuation, **A** is the height of the energy barrier. **i, j, jp, jm, ip, im** are the spatial discretization variables. **r** is for random number, 2 dimensional **phi** variable stores the evolution of the non conserved order parameter. **dfdphi** is a 2 dimensional array to store the derivative of free energy. **lap_phi**, **dummy_phi** are 2 dimensional variable arrays for laplace evaluation. 
+We define the microstructure parameters in this declaration. `noise` is the thermal fluctuation, `A` is the height of the energy barrier. `i, j, jp, jm, ip, im` are the spatial discretization variables. `r` is for random number, 2 dimensional `phi` variable stores the evolution of the non conserved order parameter. `dfdphi` is a 2 dimensional array to store the derivative of free energy. `lap_phi`, `dummy_phi` are 2 dimensional variable arrays for laplace evaluation. 
 
 ```Fortran
   !--- microstructure parameters
@@ -233,14 +233,14 @@ This statement will open the file **ac.dat**. The value of phi at the final time
 ```Fortran
   open ( 1, file = "ac.dat" )
 ```
-This statement (intrinsic subroutine call) is used for the initial time of the program. The input argument **start** is the starting time of the code execution.
+This statement (intrinsic subroutine call) is used for the initial time of the program. The input argument `start` is the starting time of the code execution.
 
 ```Fortran
   call cpu_time ( start )
 ```
 ### **Initial microstructure**
 
-The section introduces the initial microsturucture. **call random_number ( r )** is a subroutine to store the random numbers in a 2 dimensional variable **r**
+The section introduces the initial microsturucture. `call random_number ( r )` is a subroutine to store the random numbers in a 2 dimensional variable `r`
 
 ```Fortran
   !--- initial microstructure
@@ -251,7 +251,7 @@ The section introduces the initial microsturucture. **call random_number ( r )**
 ```
 ### **Evolution**
 
-This part starts the evaluation at each time step for all grid points. **time_loop** is the statement label for the time do loop. **row** and **column** are statment labels for i and j do loops respectively.
+This part starts the evaluation at each time step for all grid points. `time_loop` is the statement label for the time do loop. `row` and `column` are statment labels for i and j do loops respectively.
 
 ```Fortran
   !--- start microstructure evolution
@@ -261,14 +261,17 @@ This part starts the evaluation at each time step for all grid points. **time_lo
      row: do i = 1, Nx
         column: do j = 1, Ny
 ```
+
 This calculates the derivative of free energy at each grid point
+
 ```Fortran
            !--- free energy derivative
 
            dfdphi(i,j) = A*( 2.0*phi(i,j)*( 1.0 - phi(i,j) )**2 &
                 *( 1.0 - 2*phi(i,j) ) )
 ```
-This evaluates Laplacian. Note the use of **if** statement instead of **if then** construct. It reduces the code size.
+
+This evaluates Laplacian. Note the use of `if` statement instead of `if then` construct. It reduces the code size.
 
 ```Fortran
            !--- laplace evaluation
@@ -298,7 +301,7 @@ The code implements explicit Euler finite difference here
            phi(i,j) = phi(i,j) - dt*mobility*dummy_phi(i,j)
 ```
 
-This maintains the order parameters between **0** and **1**. The evaluation at each grid point finishes in this section. 
+This maintains the order parameters between `0` and `1`. The evaluation at each grid point finishes in this section. 
 
 ```Fortran
            !--- for small deviations
@@ -317,13 +320,15 @@ This section of the code prints the performed number of steps on the screen.
 
      if ( mod( tsteps, nprint ) .eq. 0 ) print *, 'Done steps  =  ', tsteps
 ```
+
 The microstructure evolution finishes here
+
 ```Fortran
      !--- end microstructure evolution
 
   end do time_loop
 ```
-It takes the final time used for calculation, writes the value of **phi** in the file **ac.dat** and closes the file.
+It takes the final time used for calculation, writes the value of `phi` in the file `ac.dat` and closes the file.
 
 ```Fortran
   call cpu_time ( finish )
