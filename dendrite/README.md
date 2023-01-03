@@ -156,7 +156,6 @@ and to run, enter
 ![Output](images/Fortran_dendrite_output.PNG)
 </div>
 
-
 **The compute time may vary**
 * The expected dislin plot of evolution is given below. <span style="color:red"> **Note:**</span> the figure is shown on the console and is not saved. 
 
@@ -218,7 +217,7 @@ unset label 2
 # -----------------------------------------------------------------
 unset multiplot
 ```
-<span style="color:red"> **Note:**</span> The first line is the path where the file is located. In our case it is placed in **D** drive. The rest of the commands remain the same!
+<span style="color:red"> **Note:**</span> The first line is the path where the file is located. In our case it is placed in `D` drive. The rest of the commands remain the same!
 
 The output is
 
@@ -226,7 +225,6 @@ The output is
 
 ![Output](images/gnuplot_dendrite.png)
 </div>
-
 
 # **Finite difference codes**
 
@@ -248,7 +246,7 @@ program fd_Kobayashi_model_test
 ```
 ### **Data declaration**
 
-The simulation cell size is 300 $\times$ 300. The grid spacing i.e., **dx** and **dy** is 0.03. 
+The simulation cell size is 300 $\times$ 300. The grid spacing i.e., `dx` and `dy` is 0.03. 
 
 ```Fortran
   !--- simulation cell parameters
@@ -258,7 +256,7 @@ The simulation cell size is 300 $\times$ 300. The grid spacing i.e., **dx** and 
   real ( kind = 8 )               :: dx = 0.03
   real ( kind = 8 )               :: dy = 0.03
 ```
-This section declares the number of steps for computation and the output frequency of results.  It defines the time increment with variable **dtime**. The variables **start** and **finish** are declared to calculate the time of the code execution.
+This section declares the number of steps for computation and the output frequency of results.  It defines the time increment with variable `dtime`. The variables `start` and `finish` are declared to calculate the time of the code execution.
 
 ```Fortran
   !--- time integeration parameters
@@ -270,7 +268,7 @@ This section declares the number of steps for computation and the output frequen
   real ( kind = 8 )   :: start, finish
 ```
 
-This part is related to the microstructure parameters. Anisotropy **aniso = 6** will produce hexagonal lattice. To make square geometry change it to **4**. The initial radius is inserted with diameter **seed = 5.0**, **pix** calculates the value of $\pi$
+This part is related to the microstructure parameters. Anisotropy `aniso = 6` will produce hexagonal lattice. To make square geometry change it to `4`. The initial radius is inserted with diameter `seed = 5.0`, `pix` calculates the value of $\pi$
 
 ```Fortran
   !--- material specific parameters
@@ -302,20 +300,20 @@ We define the microstructure parameters in this declaration. All these parameter
   real ( kind = 8 )                       :: theta, m
   integer ( kind = 4 )                    :: i, j, istep, ip, im, jp, jm
 ```
-These statements will open the **.dat** format files &mdash; **phi.dat**, and **temperature.dat**. The output value of phi and temperature fields at the final time step are written separately in these files.
+These statements will open the `.dat` format files &mdash; `phi.dat`, and `temperature.dat`. The output value of phi and temperature fields at the final time step are written separately in these files.
 
 ```Fortran
   open ( 1, file = "phi.dat" )
   open ( 2, file = 'temperature.dat')
 ```
-This statement (intrinsic subroutine call) is used for the initial time of the program. The input argument **start** is the starting time of the code execution.
+This statement (intrinsic subroutine call) is used for the initial time of the program. The input argument `start` is the starting time of the code execution.
 
 ```Fortran
   call cpu_time ( start )
 ```
 ### **Initial microstructure**
 
-The section implements the initial microsturucture. The initial temperature and phi fields are 0 and the initial nuclei is inserted with 5.0 radius. This satisfies the condition for solid particle having $\varphi$ = 1. 
+The section implements the initial microsturucture. The `initial temperature` and `phi fields` are `0` and the initial nuclei is inserted with `5.0` radius. This satisfies the condition for solid particle having $\varphi$ = 1. 
 
 ```Fortran
   !--- initialize and introduce initial nuclei
@@ -366,7 +364,7 @@ $$
 \frac{\partial \varepsilon}{\partial \theta}
 $$
 
-Notice the use of **if** statement instead of **if then** construct. It reduces the code size.
+Notice the use of `if` statement instead of `if then` construct. It reduces the code size.
 
 ```Fortran
            jp = j + 1
@@ -446,6 +444,7 @@ $$
 
            m = alpha/pix*atan( gama*( teq - tempr(i,j) ) )
 ```
+
 Explicit Euler finite difference is implemented here
 
 ```Fortran
@@ -461,7 +460,7 @@ Explicit Euler finite difference is implemented here
      end do
 ```
 
-This section of the code prints the **done steps** on the screen.
+This section of the code prints the `done steps` on the screen.
 
 ```Fortran
     !--- print steps
@@ -469,13 +468,14 @@ This section of the code prints the **done steps** on the screen.
      if ( mod( tsteps, nprint ) .eq. 0 ) print *, 'Done steps  =  ', tsteps
 ```
 The microstructure evolution finishes here
+
 ```Fortran
      !--- end microstructure evolution
 
   end do time_loop
 ```
 
-It takes the final time used for calculation, writes the value of **phi** in the file **phi.dat**  and **temperature** in the file **temperature.dat** and closes the files.
+It takes the final time used for calculation, writes the value of **phi** in the file `phi.dat` and **temperature** in the file `temperature.dat` and closes the files.
 
 ```Fortran
   call cpu_time ( finish )
@@ -499,7 +499,7 @@ This part prints the computed time on the screen
 ```
 This plots the dislin color plot for both order parameters, and the last statement terminates the program. Note it is only in the file **fd_dislin_dislin.f90**
 
- <span style="color:green">**call metafl ( 'cons' )** </span> displays the output on the console. <span style="color:green">**call scrmod ( 'REVERS' )** </span> will make the background white, the default is black. The dislin is initiated with the routine <span style="color:green">**call disini ( )**</span>.  <span style="color:green">**call complx (  )** </span> sets the complex font. <span style="color:green"> **call axspos ( 350, 1700 )** </span> defines the axis position,  <span style="color:green"> **call ax3len ( 600, 600, 600 )**</span> define the axis position and the axis length of the colored axis system. The routine <span style="color:green"> **call graf3 ( )** </span> plots the 3D axis system with Z axis as a color bar. <span style="color:green">**call crvmat ( )** </span> plots color surface of the matrix. <span style="color:green"> **call endgrf ( )** </span> terminates the axis system. The dislin routine is finished with the routine <span style="color:green">**call disfin ( )** </span>
+ <span style="color:green">`call metafl ( 'cons' )` </span> displays the output on the console. <span style="color:green">`call scrmod ( 'REVERS' )` </span> will make the background white, the default is black. The dislin is initiated with the routine <span style="color:green">`call disini ( )`</span>.  <span style="color:green">`call complx (  )` </span> sets the complex font. <span style="color:green"> `call axspos ( 350, 1700 )` </span> defines the axis position,  <span style="color:green"> `call ax3len ( 600, 600, 600 )` </span> define the axis position and the axis length of the colored axis system. The routine <span style="color:green"> `call graf3 ( )` </span> plots the 3D axis system with Z axis as a color bar. <span style="color:green">`call crvmat ( )` </span> plots color surface of the matrix. <span style="color:green"> `call endgrf ( )` </span> terminates the axis system. The dislin routine is finished with the routine <span style="color:green">`call disfin ( )` </span>
 
 ```Fortran
   !--- dislin multiplot
