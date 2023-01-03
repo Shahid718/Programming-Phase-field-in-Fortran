@@ -145,7 +145,7 @@ and for **windows** &mdash; with **gfortran** and with **intel** &mdash; to comp
 and to run, enter
 >fd_grain_2
 
-If the code runs successfully, it shows the done steps on the command line and will create the ouput files **grain_500.dat, grain_1000, grain_1500, grain_2000, grain_2500, grain_3000, grain_3500, grain_4000, grain, grain_4500, grain_5000**.
+If the code runs successfully, it shows the done steps on the command line and will create the ouput files `grain_500.dat, grain_1000, grain_1500, grain_2000, grain_2500, grain_3000, grain_3500, grain_4000, grain, grain_4500, grain_5000`.
 
 ### **gnuplot commands**
 
@@ -169,7 +169,7 @@ n=n+500
  } 
 unset output 
 ```
-**Note:** The first line is the path where the file is located. In our case it is placed in **D** drive. The rest of the commands remain the same!
+**Note:** The first line is the path where the file is located. In our case it is placed in `D` drive. The rest of the commands remain the same!
 
 The output is the animation of grain evolution.
 
@@ -193,7 +193,7 @@ program fd_grain_2_test
 ```
 ### **Data declaration**
 
-The simulation cell size is declared here. The grid points in x direction and y directions are 64. The total simulation cell size is 64 $\times$ 64. The grid spacing i.e., **dx** and **dy** is 0.5
+The simulation cell size is declared here. The grid points in `x direction` and `y directions` are 64. The total simulation cell size is 64 $\times$ 64. The grid spacing i.e., `dx` and `dy` is 0.5
 
 ```Fortran
   !-- simulation cell parameters
@@ -204,7 +204,7 @@ The simulation cell size is declared here. The grid points in x direction and y 
   real   ( kind = 8 ), parameter :: dx = 0.5
   real   ( kind = 8 ), parameter :: dy = 0.5
 ```
-The total number of time step are declared here, and the frequency of output time steps is set with **nprint**. The time increment is set with **dt** and time step iterations are declared with variable **istep**
+The total number of time step are declared here, and the frequency of output time steps is set with `nprint`. The time increment is set with `dt` and time step iterations are declared with variable `istep`
 
 ```Fortran
   !--- time integration parameters
@@ -214,7 +214,8 @@ The total number of time step are declared here, and the frequency of output tim
   real   ( kind = 8 ), parameter :: dt  = 0.005
   integer ( kind = 4 )           :: istep
 ```
-The material specific parameters like mobility and gradient coefficients are declared here.
+
+The material specific parameters like `mobility` and `gradient coefficient` are declared here.
 
 ```Fortran
   !--- material parameters
@@ -222,7 +223,7 @@ The material specific parameters like mobility and gradient coefficients are dec
   real   ( kind = 8 ), parameter :: mobility  = 5.0
   real   ( kind = 8 ), parameter :: grad_coef = 0.1
 ```
-This part is related to the initial microstructure. It declares the number of grains and the inital radius and the parameters to insert the initial grain. The variable **etas** is declared to store the values of grains at each grid point.
+This part is related to the initial microstructure. It declares the number of grains and the inital radius and the parameters to insert the initial grain. The variable `etas` is declared to store the values of grains at each grid point.
 
 ```Fortran
   !--- initial grain structure parameters
@@ -232,6 +233,7 @@ This part is related to the initial microstructure. It declares the number of gr
   real   ( kind = 8 ), dimension( Nx,Ny,ngrain ) :: etas
   real   ( kind = 8 ) :: xlength, x0, y0 
 ```
+
 Since derivative of free energy and laplacian is performed during the evolution of the system we define these parameters in the evolution parameters
 
 ```Fortran
@@ -245,7 +247,7 @@ Since derivative of free energy and laplacian is performed during the evolution 
 ```
 
 ### **Initial microstructure**
-The section implements the initial microsturucture. The initial radius with 14dx dimenstion is placed in the system.
+The section implements the initial microsturucture. The initial radius with `14dx` dimenstion is placed in the system.
 
 ```Fortran
   !--- inital microstructure
@@ -269,7 +271,9 @@ The section implements the initial microsturucture. The initial radius with 14dx
      end do
   end do
 ```
+
 The glist is initlialized here
+
 ```Fortran
   !--- initialize glist
 
@@ -279,7 +283,7 @@ The glist is initlialized here
 ```
 
 ### **Evolution**
-Since the code shows the continous color plot, a few dislin subroutines are called here. The first one <span style="color:green">**call scrmod ( 'REVERS' )** </span> will make the background white, the default is black. The second one <span style="color:green">**call metafl ( 'cons' )** </span> displays the output on the console. After these two routines the dislin is initiated with the routine <span style="color:green">**call disini ( )**</span>. 
+Since the code shows the continous color plot, a few dislin subroutines are called here. The first one <span style="color:green">`call scrmod ( 'REVERS' )` </span> will make the background white, the default is black. The second one <span style="color:green">`call metafl ( 'cons' )` </span> displays the output on the console. After these two routines the dislin is initiated with the routine <span style="color:green">`call disini ( )`</span>. 
 
 ```Fortran
   !--- starts microstructure evolution
@@ -301,7 +305,8 @@ time_loop: do istep = 1, nstep
               end do
            end do
 ```
-This calculates Laplacian. We have used **if statement** rather than **if then** construct. It reduces code size.
+
+This calculates Laplacian. We have used `if statement` rather than `if then` construct. It reduces code size.
 
 ```Fortran
            do i = 1, Nx
@@ -323,6 +328,7 @@ This calculates Laplacian. We have used **if statement** rather than **if then**
                  lap_eta(i,j) = ( eta(ip,j) + eta(im,j) + eta(i,jm) + &
                       eta(i,jp) - 4.0*eta(i,j) ) / ( dx*dy )
 ```
+
 The free energy derivative is evaluated here
 
 ```Fortran
@@ -339,6 +345,7 @@ The free energy derivative is evaluated here
                  dfdeta(i,j) = A*( 2.0*B* eta(i,j)*summ  + eta(i,j)**3 &
                       - eta(i,j) )
 ```
+
 the explicit Euler integration scheme is implemented here. The maximum and minimum values are set here too to avoid deviations.
 
 ```Fortran
@@ -355,7 +362,7 @@ the explicit Euler integration scheme is implemented here. The maximum and minim
               end do
            end do
 ```
-This calcuate the total area of the current grain and brings back the order parameter from the temporary array to main array. It also checks the area fraction of the current grain. If it is less than 0.001 then the grain does not exist.
+This calcuate the total area of the current grain and brings back the order parameter from the temporary array to main array. It also checks the area fraction of the current grain. If it is less than `0.001` then the grain does not exist.
 
 ```Fortran
            grain_sum = 0.0
@@ -385,7 +392,7 @@ This section of the code shows the done steps.
 
      if ( mod ( istep, nprint ) .eq. 0 ) print *, 'Done steps  =  ', istep
 ```
-The last section implements the remaining dislin routines for continuous plot and terminates the program. <span style="color:green">**call pagera (  )**</span> displayes border around the page. <span style="color:green">**call hwfont (  )**</span> sets the standard hardware font. <span style="color:green">**call titlin ( 'Contour Plot', 4 )**</span> defines the four lines of text for axis system title. <span style="color:green">**call name ( 'Nx', 'X' )**</span> defines axis titles. <span style="color:green">**call intax ( )** </span> labels the axes with integers. <span style="color:green">**call autres ( Nx, Ny )**</span> calculates the size of colored rectangles. <span style="color:green">**call axspos ( 350, 1700 )**,  **call ax3len ( 1400, 1400, 1400 )**</span> define the axis position and the axis length of the colored axis system. <span style="color:green">**call labdig ( 2, 'Z' )**</span> defines the number of decimal places for the z axis. Once the dislin parameters are set we call the dislin graf for the output frequency. The routine <span style="color:green">**call graf3 ( )** </span> plots the 3D axis system with Z axis as a color bar. <span style="color:green">**call crvmat ( )** </span> plots color surface of the matrix. <span style="color:green"> **call height ( 50 )**, **call title ( )** </span> define the charachter height and display the title. The dislin routine is finished with the routine <span style="color:green">call disfin ( ) </span>
+The last section implements the remaining dislin routines for continuous plot and terminates the program. <span style="color:green">`call pagera (  )`</span> displayes border around the page. <span style="color:green">`call hwfont (  )`</span> sets the standard hardware font. <span style="color:green">`call titlin ( 'Contour Plot', 4 )`</span> defines the four lines of text for axis system title. <span style="color:green">`call name ( 'Nx', 'X' )`</span> defines axis titles. <span style="color:green">`call intax ( )` </span> labels the axes with integers. <span style="color:green">`call autres ( Nx, Ny )`</span> calculates the size of colored rectangles. <span style="color:green">`call axspos ( 350, 1700 ),  call ax3len ( 1400, 1400, 1400 )`</span> define the axis position and the axis length of the colored axis system. <span style="color:green">`call labdig ( 2, 'Z' )`</span> defines the number of decimal places for the z axis. Once the dislin parameters are set we call the dislin graf for the output frequency. The routine <span style="color:green">`call graf3 ( )` </span> plots the 3D axis system with Z axis as a color bar. <span style="color:green">`call crvmat ( )` </span> plots color surface of the matrix. <span style="color:green"> `call height ( 50 )`, `call title ( )` </span> define the charachter height and display the title. The dislin routine is finished with the routine <span style="color:green"> `call disfin ( )` </span>
 
 ```Fortran
  !--- dislin color animation
@@ -431,7 +438,7 @@ The last section implements the remaining dislin routines for continuous plot an
 
 This code does not use dislin library and saves the files to be used for the animation with gnuplot. 
 
-The main difference is that none of the routines related to dislin are present, and the final section prints the completed steps and saves the files with an output frequency i.e., **nprint**. This segment employs the block construct to declare filenames and file opening units in local variables and writes the values in the matrix format.
+The main difference is that none of the routines related to dislin are present, and the final section prints the completed steps and saves the files with an output frequency i.e., `nprint`. This segment employs the block construct to declare filenames and file opening units in local variables and writes the values in the matrix format.
 
 ```Fortran
      !--- print done steps and write the values on files
