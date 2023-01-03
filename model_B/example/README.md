@@ -15,11 +15,11 @@ The first part describes the phase-field model. Next part presents the numerical
 
 ### **Free energy function**
 
-The total free energy ***$F$*** is given by
+The total free energy **$F$** is given by
 
 $$ F=\int\left[f\left(c\right)+\kappa\left(\nabla c\right)^2\right]dV$$
 
-Where ***$f(c)$*** is the bulk chemical free energy density, ***$c$*** is the $Cr$ concentration as a conserved order parameter, $\kappa$ is gradient energy coefficient. 
+Where **$f(c)$** is the bulk chemical free energy density, **$c$** is the $Cr$ concentration as a conserved order parameter, $\kappa$ is gradient energy coefficient. 
 
 The bulk free energy is 
 
@@ -35,21 +35,25 @@ $$	\frac{{\partial c}}{\partial t}=\nabla\left[M\nabla\left(\frac{\delta F}{\del
 
 $$\frac{\partial c}{\partial t}=\nabla^2M  \frac{\delta F}{\delta c}$$
 
-***$M$*** is mobility
+**$M$** is mobility
 
-The variational derivative of ***$F$*** is
+The variational derivative of **$F$** is
 
 $$\frac{\delta F}{\partial c}=\left(\frac{\partial f}{\partial c}-\kappa \nabla^2 c\right)$$
 
-where $$ \frac{\partial f}{\partial c}= \mu  $$ is chemical potential
+where 
+
+$$ \frac{\partial f}{\partial c}= \mu  $$
+
+is chemical potential
 
 The evolution equation now becomes
 
 $$\frac{\partial c}{\partial t}=\nabla^2M\left(\frac{\partial f}{\partial c}-\kappa \nabla^2 c\right)$$
 
 The derivative of free energy function is 
-$$ \frac{\partial f}{\partial c}= -c( 20500-9.68T)+(1-c)(20500.0-9.68T) +
-RT[log(c)-log(1-c) ] $$
+
+$$ \frac{\partial f}{\partial c}= -c( 20500-9.68T)+(1-c)(20500.0-9.68T) + RT[log(c)-log(1-c) ] $$
 
 # **Numerical method**
 
@@ -191,7 +195,7 @@ program fd_FeCr_test
 ```
 ### **Data declaration**
 
-The simulation cell size is 128 $\times$ 128. The grid spacing i.e., **dx** and **dy** is 1.0. We declare a variable **dxdy** which stores the value of dx $\times$ dy value later in the code.
+The simulation cell size is 128 $\times$ 128. The grid spacing i.e., `dx` and `dy` is 1.0. We declare a variable `dxdy` which stores the value of dx $\times$ dy value later in the code.
 
 ```Fortran
   !-- simulation cell parameters
@@ -202,7 +206,7 @@ The simulation cell size is 128 $\times$ 128. The grid spacing i.e., **dx** and 
   integer ( kind = 4 ), parameter :: dy = 1
   integer ( kind = 4 )            :: dxdy 
 ```
-This section defines total number of computed steps, the output frequency and time increment **dt**. The variables **start** and **finish** are for the time of the code execution.
+This section defines total number of computed steps, the output frequency and time increment `dt`. The variables `start` and `finish` are for the time of the code execution.
 
 ```Fortran
   !--- time integration parameters
@@ -214,7 +218,7 @@ This section defines total number of computed steps, the output frequency and ti
   real    ( kind = 8 )            :: start, finish
 ```
 
-This part is related to the microstructure parameters. It declares the initial concentration, the gradient coefficient and mobility. Temperature  is given in Kelvin and **gas_constant** is universal gas constant with value 8.314 J/mol/K. **RT** variable stores the evaluation of expression later in the code.
+This part is related to the microstructure parameters. It declares the initial concentration, the gradient coefficient and mobility. Temperature  is given in Kelvin and `gas_constant` is universal gas constant with value 8.314 J/mol/K. `RT` variable stores the evaluation of expression later in the code.
 
 ```Fortran
   !--- material specific parameters
@@ -226,7 +230,7 @@ This part is related to the microstructure parameters. It declares the initial c
   real ( kind = 8 )   , parameter :: gas_constant = 8.314462
   real ( kind = 8 )               :: RT
 ```
-We define the microstructure parameters here. noise is the thermal fluctuation. **i, j, jp, jm, ip, im** are the spatial discretization variables. **r** is for random number, 2 dimensional **cr** variable stores the evolution of the concentration. **lap_cr**, **dummy_cr**, **lap_dummy** are 2 dimensional variable arrays for laplace evaluation. **dfdcr** is a 2 dimensional array to store the derivative of free energy.
+We define the microstructure parameters here. `noise` is the thermal fluctuation. `i, j, jp, jm, ip, im` are the spatial discretization variables. `r` is for random number, 2 dimensional `cr` variable stores the evolution of the concentration. `lap_cr`, `dummy_cr`, `lap_dummy` are 2 dimensional variable arrays for laplace evaluation. `dfdcr` is a 2 dimensional array to store the derivative of free energy.
 
 ```Fortran
   !--- microstructure parameters
@@ -237,19 +241,19 @@ We define the microstructure parameters here. noise is the thermal fluctuation. 
   real ( kind = 8 )   , dimension ( Nx, Ny ) :: dfdcr, dummy_cr, lap_dummy
   integer ( kind = 4 )            :: i, j, jp, jm, ip, im
 ```
-This statement will open the **.dat** format file **FeCr.dat**. The output value of Cr concentration of the final time step is written in it.
+This statement will open the `.dat` format file **FeCr.dat**. The output value of Cr concentration of the final time step is written in it.
 
 ```Fortran
   open ( 1, file = "FeCr.dat" )
 ```
-This statement (intrinsic subroutine call) is used for the initial time of the program. The input argument **start** is the starting time of the code execution.
+This statement (intrinsic subroutine call) is used for the initial time of the program. The input argument `start` is the starting time of the code execution.
 
 ```Fortran
   call cpu_time ( start )
 ```
 ### **Initial microstructure**
 
-The section implements the initial microsturucture. **call random_number ( r )** is a subroutine to store the random numbers in a 2 dimensional variable **r**
+The section implements the initial microsturucture. `call random_number ( r )` is a subroutine to store the random numbers in a 2 dimensional variable `r`
 
 ```Fortran
   !--- initial microstructure
@@ -260,7 +264,7 @@ The section implements the initial microsturucture. **call random_number ( r )**
 ```
 ### **Evolution**
 
-We evaluated the expressions **RT = gas_constant*temperature** and **dxdy** = **dx** $ \times$ **dy** to avoid the same evaluation at each timestep. Next is the start of time discretization. **time_loop** is the statement label for the time do loop. We use concurrent programming technique with the statement **do concurrent ( i = 1 : Nx, j = 1 : Ny )** for spatial discretization. Note the use of statement label i.e., **spatial_loop**
+We evaluated the expressions `RT = gas_constant*temperature` and `dxdy` = `dx x dy` to avoid the same evaluation at each timestep. Next is the start of time discretization. `time_loop` is the statement label for the time do loop. We use concurrent programming technique with the statement `do concurrent ( i = 1 : Nx, j = 1 : Ny )` for spatial discretization. Note the use of statement label i.e., `spatial_loop`
 
 ```Fortran
   !--- start microstructure evolution
@@ -272,16 +276,18 @@ We evaluated the expressions **RT = gas_constant*temperature** and **dxdy** = **
 
       spatial_loop: do concurrent ( i = 1 : Nx, j = 1 : Ny )
 ```
-This calculates the derivative of free energy at each grid point. It is normalized with **RT**
+
+This calculates the derivative of free energy at each grid point. It is normalized with `RT`
+
 ```Fortran
         !--- free energy derivative
 
         dfdcr(i,j) = ( -cr(i,j)*( 20500.0 - 9.68*temperature ) + &
              & ( 1.0 - cr(i,j) )* ( 20500.0 - 9.68*temperature ) + &
              & ( log(cr(i,j)) - log(1.0 - cr(i,j)) ) *RT ) / RT
-
 ```
-This calculates Laplacian. Notice the use of **if** statement instead of **if then** construct. It reduces the code size.
+
+This calculates Laplacian. Notice the use of `if` statement instead of `if then` construct. It reduces the code size.
 
 ```Fortran
         !--- laplace evaluation
@@ -315,7 +321,7 @@ This section implements explicit Euler finite difference here
         cr(i,j) =  cr(i,j) + dt*mobility*lap_dummy(i,j)
 ```
 
-This maintains the order parameters between **0** and **1**. The evaluation at each grid point finishes in this section. 
+This maintains the order parameters between `0` and `1`. The evaluation at each grid point finishes in this section. 
 
 ```Fortran
         !--- for small deviations
@@ -326,21 +332,23 @@ This maintains the order parameters between **0** and **1**. The evaluation at e
    end do spatial_loop
 ```
 
-This section of the code prints the **done steps** on the screen.
+This section of the code prints the `done steps` on the screen.
 
 ```Fortran
     !--- print steps
 
      if ( mod( tsteps, nprint ) .eq. 0 ) print *, 'Done steps  =  ', tsteps
 ```
+
 The microstructure evolution finishes here
+
 ```Fortran
      !--- end microstructure evolution
 
   end do temporal_loop
 ```
 
-It takes the final time used for calculation, writes the value of **concentration** in the file **FeCr.dat** and closes the file.
+It takes the final time used for calculation, writes the value of `concentration` in the file `FeCr.dat` and closes the file.
 
 ```Fortran
   call cpu_time ( finish )
@@ -353,6 +361,7 @@ It takes the final time used for calculation, writes the value of **concentratio
 
   close( 1 )
 ```
+
 This is the quick dislin plot in colors and the last statement terminates the program. Note it is only in the file **fd_FeCr_dislin.f90**
 
 ```Fortran
