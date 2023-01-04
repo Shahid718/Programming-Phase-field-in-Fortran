@@ -78,3 +78,9 @@ The simulations were performed on the system with following details
   * Co-arrays
   * OpenMP
   * MPI
+
+## **Contact**
+
+shahid.maqbool@rwth-aachen.de
+
+shahid@postech.ac.kr
