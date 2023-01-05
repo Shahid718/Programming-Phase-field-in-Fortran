@@ -146,7 +146,7 @@ In both codes, the ouput file **ac.dat** is created. The file stores the value o
 
 You may use any graphical software to get the plot. For gnuplot use these commands:
 
-```gnuplot
+```
 cd 'D:\Fortran'
 set view map
 set size square
@@ -160,6 +160,7 @@ set palette rgbformulae 33,13,10
 set pm3d map interpolate 9,9
 splot 'ac.dat' matrix with pm3d notitle
 ```
+
 **Note:** The first line is the path where the file is located. In our case it is placed in **D** drive. The rest of the commands remain the same!
 
 The output is
