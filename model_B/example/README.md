@@ -155,7 +155,7 @@ With dislin the figure is shown on the console and is not saved. In both codes, 
 
 You may use any graphical software to get the plot. In case, gnuplot is used we used the following commands.
 
-```gnuplot
+```
 cd 'D:\Fortran'
 set view map
 set size square
