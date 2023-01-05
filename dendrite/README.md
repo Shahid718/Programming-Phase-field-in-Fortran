@@ -181,13 +181,13 @@ and for **windows** &mdash; with **gfortran** and with **intel** &mdash; to comp
 and to run, enter
 >fd_dendrite
 
-<span style="color:green"> **In both codes, the ouput files**</span> **phi.dat**, and  **temperature.dat** <span style="color:green"> **are created.**</span>
+In both codes, the ouput files **phi.dat**, and  **temperature.dat** are created.
 
 ### **gnuplot commands**
 
 You may use any graphical software to get the plot. In case, gnuplot is used we used the following commands.
 
-```gnuplot
+```
 cd 'D:\Fortran'
 set term qt 0 size 600,600
 set multiplot layout 1,2 margins 0.1,0.9,0.1,0.9 spacing 0.15
