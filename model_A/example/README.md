@@ -151,7 +151,7 @@ If the code runs successfully, it shows the done steps on the command line and w
 
 You may use any graphical software to get the plot. For gnuplot http://www.gnuplot.info/download.html use these commands:
 
-```gnuplot
+```
 cd 'D:\Fortran'
 set terminal gif animate delay 0.01  
 set view map 
