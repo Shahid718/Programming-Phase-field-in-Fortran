@@ -165,7 +165,7 @@ In both codes, the ouput file **ch.dat** is created.
 
 You may use any graphical software to get the plot. For gnuplot http://www.gnuplot.info/download.html use these commands:
 
-```gnuplot
+```
 cd 'D:\Fortran'
 set view map
 set size square
