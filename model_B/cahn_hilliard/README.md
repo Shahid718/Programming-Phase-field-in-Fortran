@@ -118,7 +118,7 @@ Two Fortran codes are there. The first one **fd_ch_dislin.f90** is using dislin 
 
 ## **with Dislin**
 It is assumed that you have **dislin graphical library** installed. The link to the library is
-https://dislin.de/
+https://dislin.de/. Use double precision module for this code.
 
 ### **fd_ch_dislin.f90**
 
