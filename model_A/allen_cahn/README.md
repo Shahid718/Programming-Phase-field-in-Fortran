@@ -30,7 +30,6 @@ $A$ is the height of the barrier.
 
 The evolution of conserved order parameter is  is linearly proportional to the variational derivative of free energy function . Mathematically it is
 
-
 $$\frac{\partial \phi}{\partial t}=-L \frac{\delta F}{\delta \phi}$$
 
 **$L$** is mobility
@@ -61,6 +60,16 @@ Graphically it is
 
 ![laplace](images/laplace.PNG)
 
+The periodic boundary conditions are 
+
+$$  \phi_{0,j} = \phi_{N_x,j}     $$ 
+
+$$  \phi_{N_x+1,j} = \phi_{1,j}   $$
+
+$$  \phi_{i,0} = \phi_{i,N_y}     $$ 
+
+$$  \phi_{i,N_y+1} = \phi_{i,1}   $$
+
 Using explicit Euler time marching scheme, the evolution equation becomes
 
 $$\frac{\phi^{n+1}-\phi^n}{\Delta t}=-L\left(\frac{\partial f}{\partial \phi}-\kappa \nabla^2 \phi\right) $$
@@ -68,7 +77,6 @@ $$\frac{\phi^{n+1}-\phi^n}{\Delta t}=-L\left(\frac{\partial f}{\partial \phi}-\k
 after rearrangement
 
 $$\phi^{n+1}=\phi^n - L \Delta t \left(\frac{\partial f}{\partial \phi} - \kappa \nabla^2 \phi\right)$$
-
 
 # **Fortran implementation**
 
@@ -91,7 +99,7 @@ Two Fortran codes are there. The first one **fd_ac_dislin.f90** is using dislin 
 ## **with Dislin**
 
 It is assumed that you have **dislin graphical library** installed. The link to the library is
-https://dislin.de/
+https://dislin.de/. Use double precision module for the code.
 
 ### **fd_ac_dislin.f90**
 For **Linux OS** &mdash; with **gfortran** &mdash; to compile, enter
@@ -115,6 +123,7 @@ and to run, enter
 ![Output](images/Fortran_ac_output.PNG)
 
 **The compute time may vary**
+
 * The expected dislin plot is given below. The exact picture may vary since we are using subroutine random numbers. The picture is displayed on the console and is not saved.
 
 ![Output](images/Fortran_ac_dislin.PNG)
