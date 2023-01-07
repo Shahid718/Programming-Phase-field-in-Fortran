@@ -12,7 +12,7 @@ This phase-field code is a 2D Fortran version of simulation of Cahn-Hilliard equ
 The first part describes the phase-field model. Next part presents the numerical simulation method i.e. finite difference. The third section demonstrates: How to implement the code, and what are the expected outputs? The following section explains the codes. Next is the comparison of two compilers and the final section shows how to optimize the code.
 
 **Note:**
-This code is the Fortran version of the code published by S. Bulent Biner in the book **Programming Phase-field Modeling** as **fd_ch_v1.m**, **section 4.4 Case Study-I**. This code however uses **Dislin library** for the interactive display of the evolution of the grain. 
+This code is the Fortran version of the code published by S. Bulent Biner in the book **Programming Phase-field Modeling** as **fd_ch_v1.m**, **section 4.4 Case Study-I**. This code however uses **Dislin library** for the interactive display of the evolution of the microstructure. 
 
 The link to the book is
 
@@ -77,6 +77,16 @@ $$\nabla^2 c_i = \frac{c_{i+1,j} + c_{i-1,j} + c_{i,j+1} + c_{i,j-1} -4c_{i,j}} 
 Graphically it is
 
 ![laplace](images/laplace.PNG)
+
+The periodic boundary conditions are 
+
+$$  c_{0,j} = c_{N_x,j}     $$ 
+
+$$  c_{N_x+1,j} = c_{1,j}   $$
+
+$$  c_{i,0} = c_{i,N_y}     $$ 
+
+$$  c_{i,N_y+1} = c_{i,1}   $$
 
 Using explicit Euler time marching scheme, the evolution equation becomes
 
