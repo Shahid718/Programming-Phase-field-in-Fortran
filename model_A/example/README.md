@@ -38,7 +38,7 @@ The free energy function for *P* grains is given by
 
 $$f_0\left(\eta_1, \eta_2, \eta_3, ...\eta_p\right)= \sum_{i=1}^p \left(-\frac{\alpha}{2} \eta_i^2+\frac{\beta}{4}\eta_i^4\right )  + \gamma \sum_{i=1}^p \sum_{j \neq i}^p \eta_i^2 \eta_j^2 $$ 
 
-where **$\eta_1$**, **$\eta_2$**, **$\eta_3$**,and **$\eta_p$** are order parameters for grain 1, grain 2, grain 3 and grain $p$ respectively.  **$\alpha$** , **$\beta$** and **$\gamma$** are positive constants. They are assumed 1 for simplicity.
+where $\eta_1$, $\eta_2$, $\eta_3$, and $\eta_p$ are order parameters for grain 1, grain 2, grain 3 and grain $p$ respectively.  $\alpha$ , $\beta$ and $\gamma$ are positive constants. They are assumed 1 for simplicity.
 
 ### **Equation of evolution**
 
@@ -46,7 +46,7 @@ The evolution of non-conserved order parameter is given by Allen-Cahn equation. 
 
 $$\frac{\partial \eta_i}{\partial t}=-L_i \cdot \frac{\delta F}{\delta \eta_i}$$
 
-$\eta_i$ is local order parameter, ***t*** is time, ***L*** is relaxation coefficient and ***F*** is total free energy. **$\kappa$** is gradient energy coefficient. 
+$\eta_i$ is local order parameter, $t$ is time, $L$ is relaxation coefficient and $F$ is total free energy. $\kappa$ is gradient energy coefficient. 
 
 $$\frac{\delta F}{\partial \eta_i}=\left(\frac{\partial f}{\partial \eta_i}-\kappa_i \nabla^2 \eta_i\right)$$
 
@@ -66,6 +66,16 @@ Graphically it is
 
 ![laplace](images/laplace.PNG)
 </div>
+
+The periodic boundary conditions are 
+
+$$  \eta_{0,j} = \eta_{N_x,j}     $$ 
+
+$$  \eta_{N_x+1,j} = \eta_{1,j}   $$
+
+$$  \eta_{i,0} = \eta_{i,N_y}     $$ 
+
+$$  \eta_{i,N_y+1} = \eta_{i,1}   $$
 
 Using explicit Euler time marching scheme, the evolution equation becomes
 
