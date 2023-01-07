@@ -104,6 +104,16 @@ Graphically it is
 ![laplace](images/laplace.PNG)
 </div>
 
+The periodic boundary conditions are 
+
+$$  \varphi_{0,j} = \varphi_{N_x,j}     $$ 
+
+$$  \varphi_{N_x+1,j} = \varphi_{1,j}   $$
+
+$$  \varphi_{i,0} = \varphi_{i,N_y}     $$ 
+
+$$  \varphi_{i,N_y+1} = \varphi_{i,1}   $$
+
 Using explicit Euler time marching scheme, the evolution equation becomes
 
 $$\frac{\varphi^{\varphi+1}-\varphi^n}{\Delta t}=-L\left(\frac{\partial f}{\partial \varphi}-\kappa \nabla^2 \varphi\right) $$
@@ -129,7 +139,7 @@ https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-downl
 Two Fortran codes are there. The first one **fd_dendrite_dislin.f90** is using dislin library and second one **fd_dendrite.f90** without dislin.
 
 ## **with Dislin**
-It is assumed that you have **dislin graphical library** installed. The link to the library is https://dislin.de/
+It is assumed that you have **dislin graphical library** installed. The link to the library is https://dislin.de/. Use double precision module for the code.
 
 ### **fd_dendrite_dislin.f90**
 
