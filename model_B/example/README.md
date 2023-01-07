@@ -69,15 +69,25 @@ Graphically it is
 
 ![laplace](images/laplace.PNG)
 
+The periodic boundary conditions are 
+
+$$  c_{0,j} = c_{N_x,j}     $$ 
+
+$$  c_{N_x+1,j} = c_{1,j}   $$
+
+$$  c_{i,0} = c_{i,N_y}     $$ 
+
+$$  c_{i,N_y+1} = c_{i,1}   $$
+
 Using explicit Euler time marching scheme, the evolution equation becomes
 
-$$\frac{c_{ij}^{n+1}-c_{ij}^n}{\Delta t}= \nabla^2M \left(\frac{\delta F}{\delta c}\right)^{n+1}$$
+$$\frac{c_{ij}^{n+1}-c_{ij}^n}{\Delta t}= \nabla^2M \cdot \left(\frac{\delta F}{\delta c}\right)^{n}$$
 
-$$\left(\frac{\delta F}{\delta c}\right)^{n+1} = \frac{\partial f}{\partial {c_{ij}^{n+1}}}-\kappa \nabla^2 {c_{ij}^{n+1}}$$
+$$\left(\frac{\delta F}{\delta c}\right)^{n} = \frac{\partial f}{\partial {c_{ij}^{n}}}-\kappa \nabla^2 {c_{ij}^{n}}$$
 
 after rearrangement
 
-$$ {c_{ij}^{n+1} } = c_{ij}^n + \nabla^2M  \Delta t \left( \frac{\partial f}{\partial {c_{ij}^{n+1}}}-\kappa \nabla^2 {c_{ij}^{n+1}} \right)$$
+$$ {c_{ij}^{n+1} } = c_{ij}^n + \nabla^2M \Delta t \left( \frac{\partial f}{\partial {c_{ij}^{n}}}-\kappa \nabla^2 {c_{ij}^{n}} \right)$$
 
 # **Fortran implementation**
 
