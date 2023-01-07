@@ -109,9 +109,10 @@ Two Fortran codes are there. The first one **fd_FeCr_dislin.f90** is using disli
 
 ## **With Dislin**
 It is assumed that you have **dislin graphical library** installed. The link to the library is
-https://dislin.de/
+https://dislin.de/. Use double precision module for this code.
 
 ### **fd_FeCr_dislin.f90**
+
 For **Linux OS** &mdash; with **gfortran** &mdash; to compile, enter
 >gfortran fd_FeCr_dislin.f90 -o fd_FeCr_dislin -L/usr/local/dislin/ -I/usr/local/dislin/gf/real64 -ldislin_d
 
