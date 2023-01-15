@@ -39,7 +39,7 @@ $$\frac{\partial c}{\partial t}=\nabla^2M  \frac{\delta F}{\delta c}$$
 
 The variational derivative of **$F$** is
 
-$$\frac{\delta F}{\partial c}=\left(\frac{\partial f}{\partial c}-\kappa \nabla^2 c\right)$$
+$$\frac{\delta F}{\delta c}=\left(\frac{\partial f}{\partial c}-\kappa \nabla^2 c\right)$$
 
 where 
 
@@ -135,7 +135,7 @@ and to run, enter
 
 **The compute time may vary**
 * The expected dislin plot of evolution is given below.
-The exact picture may vary since we are using subroutine random numbers. 
+The exact picture may vary since we are using subroutine `call random_number()`. 
 
 ![Output](images/Fortran_fecr_dislin.PNG)
 
@@ -164,7 +164,7 @@ With dislin the figure is shown on the console and is not saved. In both codes, 
 
 ### **gnuplot commands**
 
-You may use any graphical software to get the plot. In case, gnuplot is used we used the following commands.
+You may use any graphical software to get the plot. If using gnuplot enter the following commands.
 
 ```
 cd 'D:\Fortran'
@@ -180,7 +180,7 @@ set palette defined ( 0 'blue', 0.5 'grey', 1 'red' )
 set pm3d map interpolate 9,9
 splot 'FeCr.dat' matrix with pm3d notitle
 ```
-**Note:** The first line is the path where the file is located. In our case it is placed in **D** drive. The rest of the commands remain the same!
+**Note:** The first line is the path where the file is located. In our case it is placed in **D** drive. The other commands remain the same!
 
 The output is
 
@@ -275,7 +275,7 @@ The section implements the initial microsturucture. `call random_number ( r )` i
 ```
 ### **Evolution**
 
-We evaluated the expressions `RT = gas_constant*temperature` and `dxdy` = `dx x dy` to avoid the same evaluation at each timestep. Next is the start of time discretization. `time_loop` is the statement label for the time do loop. We use concurrent programming technique with the statement `do concurrent ( i = 1 : Nx, j = 1 : Ny )` for spatial discretization. Note the use of statement label i.e., `spatial_loop`
+We evaluated the expressions `RT = gas_constant*temperature` and `dxdy` = `dx x dy` to avoid the same evaluation at each timestep. Next is the start of time discretization. `time_loop` is the `construct name` for the time do loop. We use concurrent programming technique with the construct `do concurrent ( i = 1 : Nx, j = 1 : Ny )` for spatial discretization. Note the use of `construct name` i.e., `spatial_loop`
 
 ```Fortran
   !--- start microstructure evolution
