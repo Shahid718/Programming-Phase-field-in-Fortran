@@ -108,8 +108,7 @@ https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-downl
 Two Fortran codes are there. The first one **fd_FeCr_dislin.f90** is using dislin library and second one **fd_FeCr.f90** without dislin.
 
 ## **With Dislin**
-It is assumed that you have **dislin graphical library** installed. The link to the library is
-https://dislin.de/. Use double precision module for this code.
+It is assumed that you have [dislin graphical library](https://dislin.de/) installed. Use **double precision module** for this code.
 
 ### **fd_FeCr_dislin.f90**
 
@@ -129,7 +128,7 @@ and to run, enter
 
 **fd_FeCr_dislin** is the name of file with .f90 extension. **fd** stands for **finite difference** and **FeCr** for **Fe  Cr**. **dislin** refers to the use of dislin for this code.
 
-* If the code runs successfully, it will produce following output. The first part prints the done steps and the computed time. The second part shows dislin plotting library information.
+* If the code runs successfully, it will produce following output. The first part prints the done steps and the computed time; the second part shows dislin plotting library information.
 
 ![Output](images/Fortran_fecr_output.PNG)
 
@@ -217,6 +216,7 @@ The simulation cell size is 128 $\times$ 128. The grid spacing i.e., `dx` and `d
   integer ( kind = 4 ), parameter :: dy = 1
   integer ( kind = 4 )            :: dxdy 
 ```
+
 This section defines total number of computed steps, the output frequency and time increment `dt`. The variables `start` and `finish` are for the time of the code execution.
 
 ```Fortran
@@ -241,6 +241,7 @@ This part is related to the microstructure parameters. It declares the initial c
   real ( kind = 8 )   , parameter :: gas_constant = 8.314462
   real ( kind = 8 )               :: RT
 ```
+
 We define the microstructure parameters here. `noise` is the thermal fluctuation. `i, j, jp, jm, ip, im` are the spatial discretization variables. `r` is for random number, 2 dimensional `cr` variable stores the evolution of the concentration. `lap_cr`, `dummy_cr`, `lap_dummy` are 2 dimensional variable arrays for laplace evaluation. `dfdcr` is a 2 dimensional array to store the derivative of free energy.
 
 ```Fortran
