@@ -15,13 +15,11 @@ The original work considers different number of grains 4, 20, 36 and 50. To keep
 **Note:**
 This code is the Fortran version of the code published by S. Bulent Biner in the book **Programming Phase-field Modeling** as **fd_ca_v1.m**, **section 4.5 Case Study-2** with **iflag = 1**. This code however uses **Dislin library** for the interactive display of the evolution of the grain. 
 
-The link to the book is
-
-https://link.springer.com/book/10.1007/978-3-319-41196-5
+[This](https://link.springer.com/book/10.1007/978-3-319-41196-5) is the link to the book
 
 ![Output](images/book.PNG)
 
-This document presents the code in a self-consistent manner. It is divided into these sections
+This document presents the example in a self-consistent manner. It is divided into these sections
 
 * Mathematical model
 * Numerical method
@@ -48,7 +46,7 @@ $$\frac{\partial \eta_i}{\partial t}=-L_i \cdot \frac{\delta F}{\delta \eta_i}$$
 
 $\eta_i$ is local order parameter, $t$ is time, $L$ is relaxation coefficient and $F$ is total free energy. $\kappa$ is gradient energy coefficient. 
 
-$$\frac{\delta F}{\partial \eta_i}=\left(\frac{\partial f}{\partial \eta_i}-\kappa_i \nabla^2 \eta_i\right)$$
+$$\frac{\delta F}{\delta \eta_i}=\left(\frac{\partial f}{\partial \eta_i}-\kappa_i \nabla^2 \eta_i\right)$$
 
 # **Numerical method**
 
@@ -104,7 +102,7 @@ https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-downl
 Two Fortran codes are there. The first one **fd_grain_2_dislin.f90** is for dislin and second one **fd_grain_2.f90** without dislin.
 
 ## **with Dislin**
-It is assumed that you have **dislin graphical library** installed. The link to the library is https://dislin.de/. Use double precision dislin module for this code.
+It is assumed that you have [dislin graphical library](https://dislin.de/) installed. Use **double precision dislin module** for this code.
 
 ### **fd_grain_2_dislin.f90**
 
@@ -159,7 +157,7 @@ If the code runs successfully, it shows the done steps on the command line and w
 
 ### **gnuplot commands**
 
-You may use any graphical software to get the plot. For gnuplot http://www.gnuplot.info/download.html use these commands:
+You may use any graphical software to get the plot. For [gnuplot](http://www.gnuplot.info/download.html) use these commands:
 
 ```
 cd 'D:\Fortran'
@@ -179,6 +177,7 @@ n=n+500
  } 
 unset output 
 ```
+
 **Note:** The first line is the path where the file is located. In our case it is placed in `D` drive. The rest of the commands remain the same!
 
 The output is the animation of grain evolution.
@@ -302,6 +301,7 @@ Since the code shows the continous color plot, a few dislin subroutines are call
   call metafl ( 'cons' )
   call disini ( )
 ```
+
 The iteration starts here. If the condition is met, the loop will continue otherwise the grain does not exist anymore.
 
 ``` Fortran
@@ -372,6 +372,7 @@ the explicit Euler integration scheme is implemented here. The maximum and minim
               end do
            end do
 ```
+
 This calcuate the total area of the current grain and brings back the order parameter from the temporary array to main array. It also checks the area fraction of the current grain. If it is less than `0.001` then the grain does not exist.
 
 ```Fortran
@@ -395,6 +396,7 @@ This calcuate the total area of the current grain and brings back the order para
         end if
      end do
 ```
+
 This section of the code shows the done steps.
 
 ```Fortran
@@ -402,6 +404,7 @@ This section of the code shows the done steps.
 
      if ( mod ( istep, nprint ) .eq. 0 ) print *, 'Done steps  =  ', istep
 ```
+
 The last section implements the remaining dislin routines for continuous plot and terminates the program. <span style="color:green">`call pagera (  )`</span> displayes border around the page. <span style="color:green">`call hwfont (  )`</span> sets the standard hardware font. <span style="color:green">`call titlin ( 'Contour Plot', 4 )`</span> defines the four lines of text for axis system title. <span style="color:green">`call name ( 'Nx', 'X' )`</span> defines axis titles. <span style="color:green">`call intax ( )` </span> labels the axes with integers. <span style="color:green">`call autres ( Nx, Ny )`</span> calculates the size of colored rectangles. <span style="color:green">`call axspos ( 350, 1700 ),  call ax3len ( 1400, 1400, 1400 )`</span> define the axis position and the axis length of the colored axis system. <span style="color:green">`call labdig ( 2, 'Z' )`</span> defines the number of decimal places for the z axis. Once the dislin parameters are set we call the dislin graf for the output frequency. The routine <span style="color:green">`call graf3 ( )` </span> plots the 3D axis system with Z axis as a color bar. <span style="color:green">`call crvmat ( )` </span> plots color surface of the matrix. <span style="color:green"> `call height ( 50 )`, `call title ( )` </span> define the charachter height and display the title. The dislin routine is finished with the routine <span style="color:green"> `call disfin ( )` </span>
 
 ```Fortran
