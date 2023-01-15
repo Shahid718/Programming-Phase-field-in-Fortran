@@ -1,10 +1,6 @@
 # **Fortran Phase-field Dendritic Solidification**
 
-This code is a Fortran version of Dendritic solidification. It is one of the earliest phase-field models for the dendritic solidification.
-
-The link to the paper is
-
-https://www.sciencedirect.com/science/article/pii/016727899390120P
+This code is a Fortran version of Dendritic solidification. [It](https://www.sciencedirect.com/science/article/pii/016727899390120P) is one of the earliest phase-field models for the dendritic solidification.
 
 <div style="text-align: center;">
 
@@ -17,13 +13,11 @@ ___
 **Note:**
 This code is the Fortran version of the code published by S. Bulent Biner in the book **Programming Phase-field Modeling** as **fd_den_v1.m**, **section 4.7 Case Study-IV**. This code however uses **Dislin library** for the interactive display. 
 
-The link to the book is
-
-https://link.springer.com/book/10.1007/978-3-319-41196-5
+[This](https://link.springer.com/book/10.1007/978-3-319-41196-5) link to the book is
 
 ![Output](images/book.PNG)
 
-This document presents the code in a self-consistent manner. It is divided into these sections
+This document is written in a self-consistent manner. It is divided into these sections
 
 * Mathematical model
 * Numerical method
@@ -139,7 +133,7 @@ https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-downl
 Two Fortran codes are there. The first one **fd_dendrite_dislin.f90** is using dislin library and second one **fd_dendrite.f90** without dislin.
 
 ## **with Dislin**
-It is assumed that you have **dislin graphical library** installed. The link to the library is https://dislin.de/. Use double precision module for the code.
+It is assumed that you have [dislin graphical library](https://dislin.de/) installed. Use **double precision module** for the code.
 
 ### **fd_dendrite_dislin.f90**
 
@@ -195,7 +189,7 @@ In both codes, the ouput files **phi.dat**, and  **temperature.dat** are created
 
 ### **gnuplot commands**
 
-You may use any graphical software to get the plot. In case, gnuplot is used we used the following commands.
+You may use any graphical software to get the plot. For gnuplot use the following commands.
 
 ```
 cd 'D:\Fortran'
@@ -266,6 +260,7 @@ The simulation cell size is 300 $\times$ 300. The grid spacing i.e., `dx` and `d
   real ( kind = 8 )               :: dx = 0.03
   real ( kind = 8 )               :: dy = 0.03
 ```
+
 This section declares the number of steps for computation and the output frequency of results.  It defines the time increment with variable `dtime`. The variables `start` and `finish` are declared to calculate the time of the code execution.
 
 ```Fortran
@@ -310,17 +305,20 @@ We define the microstructure parameters in this declaration. All these parameter
   real ( kind = 8 )                       :: theta, m
   integer ( kind = 4 )                    :: i, j, istep, ip, im, jp, jm
 ```
+
 These statements will open the `.dat` format files &mdash; `phi.dat`, and `temperature.dat`. The output value of phi and temperature fields at the final time step are written separately in these files.
 
 ```Fortran
   open ( 1, file = "phi.dat" )
   open ( 2, file = 'temperature.dat')
 ```
+
 This statement (intrinsic subroutine call) is used for the initial time of the program. The input argument `start` is the starting time of the code execution.
 
 ```Fortran
   call cpu_time ( start )
 ```
+
 ### **Initial microstructure**
 
 The section implements the initial microsturucture. The `initial temperature` and `phi fields` are `0` and the initial nuclei is inserted with `5.0` radius. This satisfies the condition for solid particle having $\varphi$ = 1. 
@@ -342,7 +340,7 @@ The section implements the initial microsturucture. The `initial temperature` an
 ```
 ### **Evolution**
 
-The temporal and spatial discretization starts here. Note the use of statement label for the do loop &mdash; time_loop
+The temporal and spatial discretization starts here. Note the use of construct name for the do loop &mdash; time_loop
 
 ```Fortran
 !--- start microstructure evolution
@@ -352,6 +350,7 @@ The temporal and spatial discretization starts here. Note the use of statement l
      do i = 1, Nx
         do j = 1, Ny
 ```
+
 This calculates $\nabla^2 \phi$ and $\nabla^2 T$, 
 
 the angle,
@@ -414,7 +413,9 @@ Notice the use of `if` statement instead of `if then` construct. It reduces the 
         end do
      end do
 ```
-**term1** is evaluated here, term2 and m are evaluated here. 
+term1, term2 and m are evaluated here. 
+
+**term1**
 
 $$
 \frac{\partial}{\partial y}\left(\varepsilon \frac{\partial \varepsilon}{\partial \theta} \frac{\partial \varphi}{\partial x}\right)
