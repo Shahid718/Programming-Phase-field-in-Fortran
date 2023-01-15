@@ -14,9 +14,7 @@ The first part describes the phase-field model. Next part presents the numerical
 **Note:**
 This code is the Fortran version of the code published by S. Bulent Biner in the book **Programming Phase-field Modeling** as **fd_ch_v1.m**, **section 4.4 Case Study-I**. This code however uses **Dislin library** for the interactive display of the evolution of the microstructure. 
 
-The link to the book is
-
-https://link.springer.com/book/10.1007/978-3-319-41196-5
+[This](https://link.springer.com/book/10.1007/978-3-319-41196-5) is the link to the book 
 
 ![Output](images/book.PNG)
 
@@ -143,7 +141,7 @@ and to run, enter
 ![Output](images/Fortran_ch_output.PNG)
 
 **The compute time may vary**
-* The expected dislin plot of evolution is given below. The exact picture may vary since we are using subroutine random numbers. 
+* The expected dislin plot of evolution is given below. The exact picture may vary since we are using subroutine `call random_numbers()`. 
 * The figure is shown on the console and is not saved. 
 
 ![Output](images/Fortran_ch_dislin.PNG)
@@ -173,7 +171,7 @@ In both codes, the ouput file **ch.dat** is created.
 
 ### **gnuplot commands**
 
-You may use any graphical software to get the plot. For gnuplot http://www.gnuplot.info/download.html use these commands:
+You may use any graphical software to get the plot. For [gnuplot](http://www.gnuplot.info/download.html) use these commands:
 
 ```
 cd 'D:\Fortran'
@@ -278,7 +276,7 @@ The section implements the initial microsturucture. `call random_number ( r )` i
 ```
 ### **Evolution**
 
-This part starts the evaluation at each time step for all grid points. `time_loop` is the statement label for the time do loop. `row` and `column` are statment labels for i and j do loops respectively.
+This part starts the evaluation at each time step for all grid points. `time_loop` is the `name` of do construct. `row` and `column` are `statment names` for i and j `do loop construct` respectively.
 
 ```Fortran
   !--- start microstructure evolution
@@ -323,7 +321,7 @@ This calculates Laplacian. Notice the use of `if` statement instead of `if then`
                 + dummy_con(i,jp) - 4.0*dummy_con(i,j) ) / ( dx*dy )
 ```
 
-This implements Explicit Euler finite difference 
+This implements explicit Euler finite difference 
 
 ```Fortran
            !--- time integration
