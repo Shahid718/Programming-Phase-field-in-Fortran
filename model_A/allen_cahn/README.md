@@ -1,6 +1,6 @@
 # **Fortran Phase-field Allen-Cahn Simulation**
 
-This phase-field code is a 2D Fortran version of simulation of Allen-Cahn equation. This document presents the code in a self consistent manner. It is divided into these sections
+This phase-field code is a 2D Fortran version of simulation of Allen-Cahn equation. This document presents the code in a self consistent manner and is divided into these sections
 
 * Mathematical model
 * Numerical method
@@ -36,7 +36,7 @@ $$\frac{\partial \phi}{\partial t}=-L \frac{\delta F}{\delta \phi}$$
 
 The variational derivative of **$F$** is
 
-$$\frac{\delta F}{\partial \phi}=\left(\frac{\partial f}{\partial \phi}-\kappa \nabla^2 \phi\right)$$
+$$\frac{\delta F}{\delta \phi}=\left(\frac{\partial f}{\partial \phi}-\kappa \nabla^2 \phi\right)$$
 
 The evolution equation now becomes
 
@@ -98,8 +98,7 @@ Two Fortran codes are there. The first one **fd_ac_dislin.f90** is using dislin 
 
 ## **with Dislin**
 
-It is assumed that you have **dislin graphical library** installed. The link to the library is
-https://dislin.de/. Use double precision module for the code.
+It is assumed that you have [dislin graphical library](https://dislin.de/) installed. Use **double precision module** for the code.
 
 ### **fd_ac_dislin.f90**
 For **Linux OS** &mdash; with **gfortran** &mdash; to compile, enter
@@ -124,7 +123,7 @@ and to run, enter
 
 **The compute time may vary**
 
-* The expected dislin plot is given below. The exact picture may vary since we are using subroutine random numbers. The picture is displayed on the console and is not saved.
+* The expected dislin plot is given below. The exact picture may vary since we are using subroutine `call random_number ()`. The picture is displayed on the console and is not saved.
 
 ![Output](images/Fortran_ac_dislin.PNG)
 
@@ -261,7 +260,7 @@ The section introduces the initial microsturucture. `call random_number ( r )` i
 ```
 ### **Evolution**
 
-This part starts the evaluation at each time step for all grid points. `time_loop` is the statement label for the time do loop. `row` and `column` are statment labels for i and j do loops respectively.
+This part starts the evaluation at each time step for all grid points. `time_loop` is the `do construct name`. `row` and `column` are `construct names` for i and j do loops respectively.
 
 ```Fortran
   !--- start microstructure evolution
@@ -338,6 +337,7 @@ The microstructure evolution finishes here
 
   end do time_loop
 ```
+
 It takes the final time used for calculation, writes the value of `phi` in the file `ac.dat` and closes the file.
 
 ```Fortran
@@ -351,6 +351,7 @@ It takes the final time used for calculation, writes the value of `phi` in the f
 
   close( 1 )
 ```
+
 This is the quick dislin plot in colors and the last statement terminates the program. Note it is only in the file **fd_ac_dislin.f90**
 
 ```Fortran
