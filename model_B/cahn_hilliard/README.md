@@ -46,7 +46,7 @@ $$\frac{\partial c}{\partial t}=\nabla^2M  \frac{\delta F}{\delta c}$$
 
 The variational derivative of **$F$** is
 
-$$\frac{\delta F}{\partial c}=\left(\frac{\partial f}{\partial c}-\kappa \nabla^2 c\right)$$
+$$\frac{\delta F}{\delta c}=\left(\frac{\partial f}{\partial c}-\kappa \nabla^2 c\right)$$
 
 where
 
@@ -115,8 +115,7 @@ https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-downl
 Two Fortran codes are there. The first one **fd_ch_dislin.f90** is using dislin library and second one **fd_ch.f90** without dislin.
 
 ## **with Dislin**
-It is assumed that you have **dislin graphical library** installed. The link to the library is
-https://dislin.de/. Use double precision module for this code.
+It is assumed that you have [dislin graphical library](https://dislin.de/) installed. Use **double precision module** for this code.
 
 ### **fd_ch_dislin.f90**
 
@@ -276,7 +275,7 @@ The section implements the initial microsturucture. `call random_number ( r )` i
 ```
 ### **Evolution**
 
-This part starts the evaluation at each time step for all grid points. `time_loop` is the `name` of do construct. `row` and `column` are `statment names` for i and j `do loop construct` respectively.
+This part starts the evaluation at each time step for all grid points. `time_loop` is the `name` of do construct. `row` and `column` are `names` for i and j `do loop construct` respectively.
 
 ```Fortran
   !--- start microstructure evolution
