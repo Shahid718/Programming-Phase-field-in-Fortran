@@ -9,12 +9,10 @@ This phase-field code is a 2D Fortran version of simulation of Cahn-Hilliard equ
 * gfortran vs intel for 256 x 256 simulation size
 * Optimization
 
-The first part describes the phase-field model. Next part presents the numerical simulation method i.e. finite difference. The third section demonstrates: How to implement the code, and what are the expected outputs? The following section explains the codes. Next is the comparison of two compilers and the final section shows how to optimize the code.
+The first part describes the phase-field model and then it presents the numerical simulation method i.e. finite difference. The third section demonstrates: How to implement the code, and what are the expected outputs. The following explains the codes and compares two compilers. The final section demonstrates code optimization.
 
 **Note:**
-This code is the Fortran version of the code published by S. Bulent Biner in the book **Programming Phase-field Modeling** as **fd_ch_v1.m**, **section 4.4 Case Study-I**. This code however uses **Dislin library** for the interactive display of the evolution of the microstructure. 
-
-[This](https://link.springer.com/book/10.1007/978-3-319-41196-5) is the link to the book 
+This is the Fortran version of [S. Bulent Biner](https://link.springer.com/book/10.1007/978-3-319-41196-5) **Programming Phase-field Modeling** **fd_ch_v1.m**, **section 4.4 Case Study-I**. It, however, uses **Dislin library** for the interactive display of the microstructure evolution. 
 
 ![Output](images/book.PNG)
 
@@ -36,7 +34,7 @@ $A$ is the barrier height.
 
 ### **Equation of evolution**
 
-The evolution of conserved order parameter is  is linearly proportional to the variational derivative of free energy function . Mathematically it is
+The evolution of conserved order parameter is linearly proportional to the variational derivative of free energy function . Mathematically it is
 
 $$	\frac{{\partial c}}{\partial t}=\nabla\left[M\nabla\left(\frac{\delta F}{\delta c}\right)\right]$$
 
@@ -58,7 +56,7 @@ The evolution equation now becomes
 
 $$\frac{\partial c}{\partial t}=\nabla^2M\left(\frac{\partial f}{\partial c}-\kappa \nabla^2 c\right)$$
 
-The derivative of free energy function is 
+**The derivative of free energy function** is 
 
 $$ \frac{\partial f}{\partial c}= A\left( 2c(1-c)^2 - 2c^2(1-c) \right) $$
 
@@ -252,7 +250,7 @@ We define the microstructure parameters in this declaration. `noise=0.02` is the
   real ( kind = 8 )   , dimension ( Nx, Ny ) :: r, con, lap_con, dfdcon
   real ( kind = 8 )   , dimension ( Nx, Ny ) :: dummy_con, lap_dummy
 ```
-This statement will open the file **ch.dat**. The output value of concentration of the final time step is written in it.
+We open the file **ch.dat** here. The output value of concentration of the final time step is written in it.
 
 ```Fortran
   open ( 1, file = "ch.dat" )
@@ -264,7 +262,7 @@ This statement (intrinsic subroutine call) is used for the initial time of the p
 ```
 ### **Initial microstructure**
 
-The section implements the initial microsturucture. `call random_number ( r )` is a subroutine to store the random numbers in a 2 dimensional variable `r`
+The section performs the initial microsturucture. `call random_number ( r )` is a subroutine to store the random numbers in a 2 dimensional variable `r`
 
 ```Fortran
   !--- initial microstructure
@@ -275,7 +273,7 @@ The section implements the initial microsturucture. `call random_number ( r )` i
 ```
 ### **Evolution**
 
-This part starts the evaluation at each time step for all grid points. `time_loop` is the `name` of do construct. `row` and `column` are `names` for i and j `do loop construct` respectively.
+These statements start the evaluation at each time step and for all grid points. `time_loop` is the `name` of do construct. `row` and `column` are `names` for i and j `do loop construct` respectively.
 
 ```Fortran
   !--- start microstructure evolution
@@ -286,7 +284,7 @@ This part starts the evaluation at each time step for all grid points. `time_loo
         column: do j = 1, Ny
 ```
 
-This evaluates the derivative of free energy at each grid point
+It evaluates the derivative of free energy at each grid point
 
 ```Fortran
            !--- free energy derivative
@@ -295,7 +293,7 @@ This evaluates the derivative of free energy at each grid point
                 - 2.0*con(i,j)**2*( 1.0 - con(i,j) ) )
 ```
 
-This calculates Laplacian. Notice the use of `if` statement instead of `if then` construct. It reduces the code size.
+This defines the boundary conditions and calculates Laplacian. Notice the use of `if` statement instead of `if then` construct. It reduces the code size.
 
 ```Fortran
            !--- laplace evaluation
@@ -328,7 +326,7 @@ This implements explicit Euler finite difference
            con(i,j) =  con(i,j) + dt*mobility*lap_dummy(i,j)
 ```
 
-This maintains the order parameters between `0` and `1`. The evaluation at each grid point finishes in this section. Note the use of statement labels for row and column do loop. It makes it easy to follow which do loop is ended here.
+To main the order parameter in the range `0` and `1`, we use this part . The evaluation at each grid point finishes in this section. Note the use of statement labels for row and column do loop. It makes it easy to follow which do loop is ended here.
 
 ```Fortran
            !--- for small deviations
@@ -340,7 +338,7 @@ This maintains the order parameters between `0` and `1`. The evaluation at each 
      end do row
 ```
 
-This section of the code prints the `done steps` on the screen.
+This section prints the `done steps` on the screen.
 
 ```Fortran
     !--- print steps
@@ -370,7 +368,7 @@ It takes the final time used for calculation, writes the value of `concentration
   close( 1 )
 ```
 
-This is the quick dislin plot in colors and the last statement terminates the program. It is only in the file **fd_ch_dislin.f90**
+This is the quick color dislin plot, and the last statement terminates the program. It is only in the file **fd_ch_dislin.f90**
 
 ```Fortran
   !--- quick Dislin color plot
@@ -382,7 +380,7 @@ end program fd_ch_test
 
 # **gfortran vs intel for 256 x 256 simulation size**
 
-To compare the compute time at both compilers we used the file **fd_ch.f90** and increased the simulation size to 256 $\times$ 256 i.e. `Nx = 256` and `Ny = 256`. The following statements were commented too as.
+To compare the compute time we used the file **fd_ch.f90** and increased the simulation size to 256 $\times$ 256 i.e. `Nx = 256` and `Ny = 256`. The following statements were commented too:
 
 ```Fortran
   ! open ( 1, file = "ch.dat" )
@@ -417,4 +415,4 @@ The simulation was run on the Desktop system with these properties:
 
 # **Optimized code**
 
-The codes are not optimized. You can interchange loop and use the do concurrent. Also use the compiler flags like -O3. 
+The codes are not optimized. Interchange the loops and use the do concurrent. Also use the compiler flags like -O3. 
