@@ -1,6 +1,6 @@
 # Programming-Phase-field-in-Fortran
 
-The repository shows the use of Fortran programming language for the phase-field methods. The codes are 2D. The codes for Model A and Model B together with examples are given. In addition, solidification of a single component alloy is also provided.
+The repository shows the use of Fortran programming language for the phase-field methods. The codes are 2D. Model A and Model B examples are given; solidification of a single component alloy is also provided.
 
 ![Output](images/modelAB.png)
 ___
