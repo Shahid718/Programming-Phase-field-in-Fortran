@@ -48,7 +48,7 @@ program fd_ac_test
   real ( kind = 8 )   , dimension ( Nx, Ny ) :: lap_phi, dummy_phi
   integer ( kind = 4 )            :: i, j, jp, jm, ip, im
 
-  open ( 1, file = "ac.dat" )
+  call cpu_time ( start )
 
   !--- initial microstructure
 
@@ -110,6 +110,8 @@ program fd_ac_test
 
   !--- write phi on the file and closes it
 
+  open ( 1, file = "ac.dat" )
+  
   do i = 1, Nx
      write( 1, * ) ( phi(i,j),j = 1, Ny )
   end do
