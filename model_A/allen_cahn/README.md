@@ -237,16 +237,13 @@ We define the microstructure parameters in this declaration. `noise` is the ther
   real ( kind = 8 )   , dimension ( Nx, Ny ) :: r, phi, dfdphi
   real ( kind = 8 )   , dimension ( Nx, Ny ) :: lap_phi, dummy_phi
 ```
-This statement will open the file **ac.dat**. The value of phi at the final time step is written in it.
 
-```Fortran
-  open ( 1, file = "ac.dat" )
-```
-This statement (intrinsic subroutine call) is used for the initial time of the program. The input argument `start` is the starting time of the code execution.
+This is the intrinsic subroutine call for the `start` time of the program. 
 
 ```Fortran
   call cpu_time ( start )
 ```
+
 ### **Initial microstructure**
 
 The section introduces the initial microsturucture. `call random_number ( r )` is a subroutine to store the random numbers in a 2 dimensional variable `r`
@@ -258,6 +255,7 @@ The section introduces the initial microsturucture. `call random_number ( r )` i
 
   phi = phi_0 + noise*( 0.5 - r )
 ```
+
 ### **Evolution**
 
 This part starts the evaluation at each time step for all grid points. `time_loop` is the `do construct name`. `row` and `column` are `construct names` for i and j do loops respectively.
@@ -338,12 +336,14 @@ The microstructure evolution finishes here
   end do time_loop
 ```
 
-It takes the final time used for calculation, writes the value of `phi` in the file `ac.dat` and closes the file.
+It takes the final time used for calculation; It opens the file `ac.dat` , writes the value of `phi` and closes it.
 
 ```Fortran
   call cpu_time ( finish )
 
   !--- write concentration on the file and closes it
+
+  open ( 1, file = "ac.dat" )
 
   do i = 1, Nx
      write( 1, * ) ( phi(i,j),j = 1, Ny )
@@ -352,7 +352,7 @@ It takes the final time used for calculation, writes the value of `phi` in the f
   close( 1 )
 ```
 
-This is the quick dislin plot in colors and the last statement terminates the program. Note it is only in the file **fd_ac_dislin.f90**
+This is the quick dislin color plot and the last statement terminates the program. Note it is only in the file **fd_ac_dislin.f90**
 
 ```Fortran
   !--- quick Dislin color plot
