@@ -258,7 +258,7 @@ This statement (intrinsic subroutine call) is used for the initial time of the p
 ```
 ### **Initial microstructure**
 
-The section performs the initial microsturucture. `call random_number ( r(i.j) )` is a subroutine to store the random numbers in a 2 dimensional variable `r`
+The section performs the initial microsturucture. `call random_number ( r(i,j) )` is a subroutine to store the random numbers in a 2 dimensional variable `r`
 
 ```Fortran
   !--- initial microstructure
@@ -364,6 +364,7 @@ It takes the final time used for calculation, writes the value of `concentration
   !--- Open, write concentration on the file and closes it
  
   open ( 1, file = "ch.dat" )
+  
   do i = 1, Nx
      write( 1, * ) ( con(i,j),j = 1, Ny )
   end do
@@ -386,10 +387,10 @@ end program fd_ch_test
 To compare the compute time we used the file **fd_ch.f90** and increased the simulation size to 256 $\times$ 256 i.e. `Nx = 256` and `Ny = 256`. The following statements were commented too:
 
 ```Fortran
-  ! open ( 1, file = "ch.dat" )
-
   !--- write concentration on the file and closes it
-
+  
+  ! open ( 1, file = "ch.dat" )
+  
   !do i = 1, Nx
   !   write( 1, * ) ( con(i,j),j = 1, Ny )
   !end do
