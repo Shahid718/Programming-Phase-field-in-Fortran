@@ -11,9 +11,7 @@ This code is a Fortran version of Dendritic solidification. [It](https://www.sci
 ___
 
 **Note:**
-This code is the Fortran version of the code published by S. Bulent Biner in the book **Programming Phase-field Modeling** as **fd_den_v1.m**, **section 4.7 Case Study-IV**. This code however uses **Dislin library** for the interactive display. 
-
-[This](https://link.springer.com/book/10.1007/978-3-319-41196-5) link to the book is
+This code is the Fortran version of the code published by S. Bulent Biner in the [book](https://link.springer.com/book/10.1007/978-3-319-41196-5) **Programming Phase-field Modeling** as **fd_den_v1.m**, **section 4.7 Case Study-IV**. Our code however uses **Dislin library** for the interactive display. 
 
 ![Output](images/book.PNG)
 
