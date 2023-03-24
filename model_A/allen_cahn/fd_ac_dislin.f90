@@ -54,7 +54,7 @@ program fd_ac_test
 
   do i = 1 , Nx
      do j = 1, Ny
-
+ 
         call random_number ( r (i,j) )
         phi(i,j) = phi_0 + noise*( 0.5 - r(i,j) )
         
