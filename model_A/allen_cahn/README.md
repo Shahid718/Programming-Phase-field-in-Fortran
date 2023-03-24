@@ -246,14 +246,19 @@ This is the intrinsic subroutine call for the `start` time of the program.
 
 ### **Initial microstructure**
 
-The section introduces the initial microsturucture. `call random_number ( r )` is a subroutine to store the random numbers in a 2 dimensional variable `r`
+The section introduces the initial microsturucture. `call random_number ( r(i,j) )` is a subroutine to store the random numbers in a 2 dimensional variable `r`
 
 ```Fortran
   !--- initial microstructure
 
-  call random_number ( r )
-
-  phi = phi_0 + noise*( 0.5 - r )
+  do i = 1 , Nx
+     do j = 1, Ny
+ 
+        call random_number ( r (i,j) )
+        phi(i,j) = phi_0 + noise*( 0.5 - r(i,j) )
+        
+     end do
+  end do
 ```
 
 ### **Evolution**
