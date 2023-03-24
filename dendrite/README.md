@@ -306,13 +306,6 @@ We define the microstructure parameters in this declaration. All these parameter
   integer ( kind = 4 )                    :: i, j, istep, ip, im, jp, jm
 ```
 
-These statements will open the `.dat` format files &mdash; `phi.dat`, and `temperature.dat`. The output value of phi and temperature fields at the final time step are written separately in these files.
-
-```Fortran
-  open ( 1, file = "phi.dat" )
-  open ( 2, file = 'temperature.dat')
-```
-
 This statement (intrinsic subroutine call) is used for the initial time of the program. The input argument `start` is the starting time of the code execution.
 
 ```Fortran
@@ -486,13 +479,17 @@ The microstructure evolution finishes here
   end do time_loop
 ```
 
-It takes the final time used for calculation, writes the value of **phi** in the file `phi.dat` and **temperature** in the file `temperature.dat` and closes the files.
+It takes the final time used for calculation. The statements will open the `.dat` format files &mdash; `phi.dat`, and `temperature.dat`. The output value of phi and temperature fields at the final time step are written separately in these files.
 
 ```Fortran
+
   call cpu_time ( finish )
 
   !--- write phi and temperature on the files and closes it
-
+  
+  open ( 1, file = "phi.dat" )
+  open ( 2, file = 'temperature.dat')
+  
   do i = 1, Nx
      write( 1, * ) ( phi(i,j), j = 1, Ny )
      write( 2, * ) ( tempr(i,j), j = 1, Ny )
@@ -502,6 +499,7 @@ It takes the final time used for calculation, writes the value of **phi** in the
   close( 2 )
 ```
 This part prints the computed time on the screen
+
 ```Fortran
   !--- prints computed time on the screen
 
