@@ -52,9 +52,14 @@ program fd_ac_test
 
   !--- initial microstructure
 
-  call random_number ( r )
+  do i = 1 , Nx
+     do j = 1, Ny
 
-  phi = phi_0 + noise*( 0.5 - r )
+        call random_number ( r (i,j) )
+        phi(i,j) = phi_0 + noise*( 0.5 - r(i,j) )
+        
+     end do
+  end do
 
   !--- start microstructure evolution
 
