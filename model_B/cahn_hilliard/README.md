@@ -250,11 +250,7 @@ We define the microstructure parameters in this declaration. `noise=0.02` is the
   real ( kind = 8 )   , dimension ( Nx, Ny ) :: r, con, lap_con, dfdcon
   real ( kind = 8 )   , dimension ( Nx, Ny ) :: dummy_con, lap_dummy
 ```
-We open the file **ch.dat** here. The output value of concentration of the final time step is written in it.
 
-```Fortran
-  open ( 1, file = "ch.dat" )
-```
 This statement (intrinsic subroutine call) is used for the initial time of the program. The input argument `start` is the starting time of the code execution.
 
 ```Fortran
@@ -262,14 +258,20 @@ This statement (intrinsic subroutine call) is used for the initial time of the p
 ```
 ### **Initial microstructure**
 
-The section performs the initial microsturucture. `call random_number ( r )` is a subroutine to store the random numbers in a 2 dimensional variable `r`
+The section performs the initial microsturucture. `call random_number ( r(i.j) )` is a subroutine to store the random numbers in a 2 dimensional variable `r`
 
 ```Fortran
   !--- initial microstructure
 
-  call random_number ( r )
+   do i = 1 , Nx
+     do j = 1, Ny
 
-  con = c0 + noise*( 0.5 - r )
+        call random_number ( r (i,j) )
+
+        con(i,j) = c0 + noise*( 0.5 - r(i,j) )
+
+     end do
+   end do
 ```
 ### **Evolution**
 
@@ -359,8 +361,9 @@ It takes the final time used for calculation, writes the value of `concentration
 ```Fortran
   call cpu_time ( finish )
 
-  !--- write concentration on the file and closes it
-
+  !--- Open, write concentration on the file and closes it
+ 
+  open ( 1, file = "ch.dat" )
   do i = 1, Nx
      write( 1, * ) ( con(i,j),j = 1, Ny )
   end do
