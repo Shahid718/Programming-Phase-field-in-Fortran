@@ -60,9 +60,6 @@ program fd_Kobayashi_model_test
   real ( kind = 8 )                       :: theta, m
   integer ( kind = 4 )                    :: i, j, istep, ip, im, jp, jm
 
-  open ( 1, file = 'phi.dat' )
-  open ( 2, file = 'temperature.dat')
-
   call cpu_time ( start )
 
   !--- initialize and introduce initial nuclei
@@ -173,6 +170,9 @@ program fd_Kobayashi_model_test
 
   !--- write phi and temperature on the files and closes it
 
+  open ( 1, file = 'phi.dat' )
+  open ( 2, file = 'temperature.dat')
+  
   do i = 1, Nx
      write( 1, * ) ( phi(i,j),j = 1, Ny )
      write( 2, * ) ( tempr(i,j),j = 1, Ny )
