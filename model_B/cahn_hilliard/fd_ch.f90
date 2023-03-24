@@ -45,15 +45,20 @@ program fd_ch_test
   real ( kind = 8 )   , dimension ( Nx, Ny ) :: r, con, lap_con, dfdcon
   real ( kind = 8 )   , dimension ( Nx, Ny ) :: dummy_con, lap_dummy
 
-  open ( 1, file = "ch.dat" )
+  
+  call cpu_time ( start )
   
   !--- initial microstructure
 
-  call cpu_time ( start )
+   do i = 1 , Nx
+     do j = 1, Ny
 
-  call random_number ( r )
+        call random_number ( r (i,j) )
 
-  con = c0 + noise*( 0.5 - r )
+        con(i,j) = c0 + noise*( 0.5 - r(i,j) )
+
+     end do
+  end do
 
   !--- start microstructure evolution
 
@@ -110,8 +115,10 @@ program fd_ch_test
 
   call cpu_time ( finish )
 
-  !--- write concentration on the file and closes it
+  !--- Open and write concentration on the file and closes it
 
+  open ( 1, file = "ch.dat" )
+  
   do i = 1, Nx
      write( 1, * ) ( con(i,j),j = 1, Ny )
   end do
