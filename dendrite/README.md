@@ -82,11 +82,11 @@ $$
 
 # **Numerical method**
 
-Since the model is partial differential equation (PDE), various numerical methods are available for solving the equations. We use finite difference methods here because of its simplicity.
+Because the model is a partial differential equation (PDE), numerous numerical approaches for solving the equations are available. For the sake of simplicity, we use finite difference method here.
 
-Finite difference algorithms are simple and direct way to solve the phase field equations. They convert derivative to difference equation at each grid point to perform computation. 
+Finite difference algorithms are a straightforward method for solving phase field equations. They convert the derivative to the difference equation at each grid point.
 
-There are various FD methods like backward difference, forward difference, centered difference and centered second difference methods. For our Laplace operator evaluation, we use five point stencils and is given by
+FD techniques include backward difference, forward difference, centered difference, and centered second difference. We utilize five point stencils for our Laplace operator evaluation, which is given by
 
 $$\nabla^2 \varphi = \frac{\varphi_{i+1,j} + \varphi_{i-1,j} + \varphi_{i,j+1} + \varphi_{i,j-1} -4\varphi_{i,j}} {dxdy}$$
 
