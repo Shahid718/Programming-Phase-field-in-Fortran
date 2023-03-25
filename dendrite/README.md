@@ -15,7 +15,7 @@ This code is the Fortran version of the code published by S. Bulent Biner in the
 
 ![Output](images/book.PNG)
 
-This document is written in a self-consistent manner. It is divided into these sections
+This document is separated into sections and written in a self-contained way.
 
 * Mathematical model
 * Numerical method
