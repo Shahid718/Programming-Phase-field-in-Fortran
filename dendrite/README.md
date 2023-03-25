@@ -151,6 +151,14 @@ and to run, enter
 
 **fd_dendrite_dislin** is the name of file with .f90 extension. **fd** stands for **finite difference** and **dendrite** for **dendritic solidification**. **dislin** refers to the use of dislin for this code.
 
+**Alternatively**
+
+if you want to avoid explicit commands, use the script given by Dislin. It is 
+
+>f90link -a -r8 fd_dendrite_dislin
+
+The command will compile and run the double precision (-r8) dislin module code.
+
 * If the code runs successfully, it will produce following output. The first part prints the done steps and the computed time. The second part shows dislin plotting library information.
 
 <div style="text-align: center;">
