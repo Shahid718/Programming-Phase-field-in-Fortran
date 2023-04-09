@@ -135,6 +135,14 @@ It is assumed that you have [dislin graphical library](https://dislin.de/) insta
 
 ### **fd_dendrite_dislin.f90**
 
+* use the script given by Dislin. It is
+
+> f90link -a -r8 fd_dendrite_dislin
+
+The command will compile and run the double precision (-r8) dislin module code.
+
+* **Alternatively**
+
 For **Linux OS** &mdash; with **gfortran** &mdash; to compile, enter
 >gfortran fd_dendrite_dislin.f90 -o fd_dendrite_dislin -L/usr/local/dislin/ -I/usr/local/dislin/gf/real64 -ldislin_d
 
@@ -150,14 +158,6 @@ and to run, enter
 >fd_dendrite_dislin
 
 **fd_dendrite_dislin** is the name of file with .f90 extension. **fd** stands for **finite difference** and **dendrite** for **dendritic solidification**. **dislin** refers to the use of dislin for this code.
-
-**Alternatively**
-
-if you want to avoid explicit commands, use the script given by Dislin. It is 
-
->f90link -a -r8 fd_dendrite_dislin
-
-The command will compile and run the double precision (-r8) dislin module code.
 
 * If the code runs successfully, it will produce following output. The first part prints the done steps and the computed time. The second part shows dislin plotting library information.
 
