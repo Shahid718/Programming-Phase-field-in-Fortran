@@ -13,13 +13,11 @@ The original work considers different number of grains 4, 20, 36 and 50. To keep
 
 
 **Note:**
-This code is the Fortran version of the code published by S. Bulent Biner in the book **Programming Phase-field Modeling** as **fd_ca_v1.m**, **section 4.5 Case Study-2** with **iflag = 1**. This code however uses **Dislin library** for the interactive display of the evolution of the grain. 
-
-[This](https://link.springer.com/book/10.1007/978-3-319-41196-5) is the link to the book
+This code is the Fortran version of the code published by S. Bulent Biner in the [book](https://link.springer.com/book/10.1007/978-3-319-41196-5) **Programming Phase-field Modeling** as **fd_ca_v1.m**, **section 4.5 Case Study-2** with **iflag = 1**. This code however uses **Dislin library** for the interactive display of the evolution of the grain. 
 
 ![Output](images/book.PNG)
 
-This document presents the example in a self-consistent manner. It is divided into these sections
+This document is divided into the following sections and explains the example in an easy-to-follow format.
 
 * Mathematical model
 * Numerical method
