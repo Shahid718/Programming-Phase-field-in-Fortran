@@ -101,6 +101,15 @@ Two Fortran codes are there. The first one **fd_ac_dislin.f90** is using dislin 
 It is assumed that you have [dislin graphical library](https://dislin.de/) installed. Use **double precision module** for the code.
 
 ### **fd_ac_dislin.f90**
+
+* use the script given by Dislin. It is
+
+> f90link -a -r8 fd_dendrite_dislin
+
+The command will compile and run the double precision (-r8) dislin module code.
+
+* **Alternatively**
+
 For **Linux OS** &mdash; with **gfortran** &mdash; to compile, enter
 >gfortran fd_ac_dislin.f90 -o fd_ac_dislin -L/usr/local/dislin/ -I/usr/local/dislin/gf/real64 -ldislin_d
 
