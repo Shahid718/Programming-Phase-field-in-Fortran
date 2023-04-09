@@ -117,6 +117,14 @@ It is assumed that you have [dislin graphical library](https://dislin.de/) insta
 
 ### **fd_ch_dislin.f90**
 
+* use the script given by Dislin. It is
+
+> f90link -a -r8 fd_ch_dislin
+
+The command will compile and run the double precision (-r8) dislin module code.
+
+* **Alternatively**
+
 For **Linux OS** &mdash; with **gfortran** &mdash; to compile, enter
 >gfortran fd_ch_dislin.f90 -o fd_ch_dislin -L/usr/local/dislin/ -I/usr/local/dislin/gf/real64 -ldislin_d
 
