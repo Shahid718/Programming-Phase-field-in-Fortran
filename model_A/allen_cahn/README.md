@@ -104,7 +104,7 @@ It is assumed that you have [dislin graphical library](https://dislin.de/) insta
 
 * use the script given by Dislin. It is
 
-> f90link -a -r8 fd_dendrite_dislin
+> f90link -a -r8 fd_ac_dislin
 
 The command will compile and run the double precision (-r8) dislin module code.
 
