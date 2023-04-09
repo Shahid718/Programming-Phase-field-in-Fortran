@@ -2,9 +2,7 @@
 
 This phase-field grain growth code is a 2D Fortran version of grain growth model by Fan and Chen. It is a diffuse interface phase-field model describing continuous representation of field variables. The field variables describe polycrystalline grain evolution in spatial and temporal scale with Ginzburg-Landau time dependent equation.
 
-The original work considers different number of grains 4, 20, 36 and 50. To keep things simple, ***this document only shows how to code grain growth for 2 grains***.
-
-[Link to the paper](https://www.sciencedirect.com/science/article/pii/S1359645496002005)
+The [original work](https://www.sciencedirect.com/science/article/pii/S1359645496002005) considers different number of grains 4, 20, 36 and 50. To keep things simple, ***this document only shows how to code grain growth for 2 grains***.
 
 <div style="text-align: center;">
 
