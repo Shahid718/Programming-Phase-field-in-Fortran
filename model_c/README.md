@@ -17,11 +17,11 @@ The first part describes the phase-field model. Next part presents the numerical
 
 ### **Free energy functional**
 
-The total free energy ***$F$*** is given by
+The total free energy **$F$** is given by
 
 $$ F=\int\left[f\left(c,\phi\right)+\kappa_c\left(\nabla c\right)^2 + \kappa_\phi\left(\nabla \phi\right)^2\right]dV$$
 
-Where ***$f(c,\phi)$*** is the chemical free energy density, ***$c$*** is the conserved order parameter, ***$\phi$*** is the non-conserved order parameter, $\kappa_c$ is gradient energy coefficient of conserved order parameter and $\kappa_\phi$ is gradient energy coefficient of non-conserved order parameter. 
+Where **$f(c,\phi)$** is the chemical free energy density, **$c$** is the conserved order parameter, **$\phi$** is the non-conserved order parameter, $\kappa_c$ is gradient energy coefficient of conserved order parameter and $\kappa_\phi$ is gradient energy coefficient of non-conserved order parameter. 
 
 **The chemical free energy** is 
 
@@ -32,6 +32,7 @@ where $p (\phi)$ is an interpolation function
  $$ p(\phi) = \phi^3 (10-15\phi+6\phi^2)   $$
 
 and $q(\phi)$ is a double well potential function
+
 $$  q(\phi) = \phi^2(1-\phi)^2  $$ 
 
 $D$ is the height of the barrier.
@@ -45,7 +46,7 @@ $$\frac{\partial \phi}{\partial t}=-L \frac{\delta F}{\delta \phi}$$
 
 ***M*** and ***L*** are mobilities for conserved and non-nonserved order parameters.
 
-The variational derivatives of ***$F$*** are
+The variational derivatives of **$F$** are
 
 $$\frac{\delta F}{\partial c}=\left(\frac{\partial f}{\partial c}-\kappa_c \nabla^2 c\right)$$
 $$\frac{\delta F}{\partial \phi}=\left(\frac{\partial f}{\partial \phi}-\kappa_\phi \nabla^2 \phi\right)$$
@@ -152,7 +153,7 @@ and to run, enter
 **The compute time may vary**
 * The expected dislin plot is given below. The picture is displayed on the console and is not saved.
 
-![Output](images/dislin_ch_ac.PNG)
+![Output](images/dislin_ch_ac.png)
 
 ## **without Dislin**
 
