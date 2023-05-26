@@ -42,6 +42,7 @@ $D$ is the height of the barrier.
 The evolution of conserved and non conserved order parameter is related to the variational derivative of free energy function. Mathematically
 
 $$\frac{\partial c}{\partial t}=M\nabla^2  \frac{\delta F}{\delta c}$$
+
 $$\frac{\partial \phi}{\partial t}=-L \frac{\delta F}{\delta \phi}$$
 
 ***M*** and ***L*** are mobilities for conserved and non-nonserved order parameters.
@@ -49,21 +50,25 @@ $$\frac{\partial \phi}{\partial t}=-L \frac{\delta F}{\delta \phi}$$
 The variational derivatives of **$F$** are
 
 $$\frac{\delta F}{\partial c}=\left(\frac{\partial f}{\partial c}-\kappa_c \nabla^2 c\right)$$
+
 $$\frac{\delta F}{\partial \phi}=\left(\frac{\partial f}{\partial \phi}-\kappa_\phi \nabla^2 \phi\right)$$
 
 The evolution equations now become
 
 $$\frac{\partial c}{\partial t}=M\nabla^2\left(\frac{\partial f}{\partial c}-\kappa_c \nabla^2 c\right)$$
+
 $$\frac{\partial \phi}{\partial t}=-L\left(\frac{\partial f}{\partial \phi}-\kappa_\phi \nabla^2 \phi\right)$$
 
 **The derivative of free energy function** 
 
 $$ \frac{\partial f}{\partial c}= 2Ac\left( 1-p(\phi)) -2B(1-c) p(\phi) \right) $$
+
 $$ \frac{\partial f}{\partial \phi}= -Ac^2 p'(\phi) + B(1-c)^2p'(\phi) + 2D\phi(1-\phi)(1-2\phi)$$
 
 where $p'$ is
 
 $$      p' =   3\phi^2(10-15\phi+6\phi^2)   +\phi^3(12\phi-15)    $$ 
+
 # **Numerical method**
 
 Because the model is a partial differential equation (PDE), numerous numerical approaches for solving the equations are available. For the sake of simplicity, we use finite difference method here.
