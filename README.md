@@ -57,7 +57,7 @@ ___
 
 ## **Computational Tools**
 
-The simulations were performed on the system with following details
+The simulations were performed on the system with the following details:
 
 |                OS      |      Compilers and versions               |  Integrated graphics library  |  Output graphics library   |
 | -----------------------| ----------------------------------------- |------------------------------ |----------------------------|
@@ -67,8 +67,12 @@ The simulations were performed on the system with following details
 
 ## **Future work**
 
-* Procedural programming
+* [Whole array programming](https://github.com/Shahid718/Phase-field-Fortran-codes-using-whole-array)
+  
+*  Procedural programming
 
+      * [internal procedures](https://github.com/Shahid718/Fortran-Phase-field-codes-using-Internal-Procedures)
+               
 * Modular programming
 
 * Object-oriented programming
