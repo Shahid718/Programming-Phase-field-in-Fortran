@@ -72,6 +72,7 @@ The simulations were performed on the system with the following details:
 *  Procedural programming
 
       * [internal procedures](https://github.com/Shahid718/Fortran-Phase-field-codes-using-Internal-Procedures)
+      * external procedures
                
 * Modular programming
 
@@ -82,7 +83,12 @@ The simulations were performed on the system with the following details:
   * Co-arrays
   * OpenMP
   * MPI
+    
+* GPU programming with 
 
+  * CUDA Fortran
+  * OpenACC
+    
 ## **Contact**
 
 shahid.maqbool@rwth-aachen.de
