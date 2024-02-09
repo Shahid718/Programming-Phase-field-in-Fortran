@@ -286,7 +286,6 @@ This part is related to the microstructure parameters. Anisotropy `aniso = 6` wi
 
   real ( kind = 8 )   :: tau   = 0.0003
   real ( kind = 8 )   :: epsilonb = 0.01
-  real ( kind = 8 )   :: mu    = 1.0
   real ( kind = 8 )   :: kappa = 1.8
   real ( kind = 8 )   :: delta = 0.02
   real ( kind = 8 )   :: aniso = 6.0
@@ -309,7 +308,7 @@ We define the microstructure parameters in this declaration. All these parameter
   real ( kind = 8 ) , dimension( Nx, Ny ) :: epsil, epsilon_deriv
   real ( kind = 8 )                       :: phi_old, term1, term2
   real ( kind = 8 )                       :: theta, m
-  integer ( kind = 4 )                    :: i, j, istep, ip, im, jp, jm
+  integer ( kind = 4 )                    :: i, j, ip, im, jp, jm
 ```
 
 This statement (intrinsic subroutine call) is used for the initial time of the program. The input argument `start` is the starting time of the code execution.
@@ -320,7 +319,7 @@ This statement (intrinsic subroutine call) is used for the initial time of the p
 
 ### **Initial microstructure**
 
-The section implements the initial microsturucture. The `initial temperature` and `phi fields` are `0` and the initial nuclei is inserted with `5.0` radius. This satisfies the condition for solid particle having $\varphi$ = 1. 
+The section implements the initial microstructure. The `initial temperature` and `phi fields` are `0` and the initial nuclei is inserted with `5.0` radius. This satisfies the condition for solid particle having $\varphi$ = 1. 
 
 ```Fortran
   !--- initialize and introduce initial nuclei
