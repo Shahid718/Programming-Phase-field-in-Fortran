@@ -2,8 +2,6 @@
 !      
 !   Finite Difference Phase Field Code of Dendrite Solidification.
 !
-!   The program uses Dislin plotting library.
-!
 !   Author  :
 !               Shahid Maqbool
 ! 
@@ -37,7 +35,6 @@ program fd_Kobayashi_model_test
 
   real ( kind = 8 )   :: tau   = 0.0003
   real ( kind = 8 )   :: epsilonb = 0.01
-  real ( kind = 8 )   :: mu    = 1.0
   real ( kind = 8 )   :: kappa = 1.8
   real ( kind = 8 )   :: delta = 0.02
   real ( kind = 8 )   :: aniso = 6.0
@@ -57,7 +54,7 @@ program fd_Kobayashi_model_test
   real ( kind = 8 ) , dimension( Nx, Ny ) :: epsil, epsilon_deriv
   real ( kind = 8 )                       :: phi_old, term1, term2
   real ( kind = 8 )                       :: theta, m
-  integer ( kind = 4 )                    :: i, j, istep, ip, im, jp, jm
+  integer ( kind = 4 )                    :: i, j, ip, im, jp, jm
 
   call cpu_time ( start )
 
@@ -185,4 +182,4 @@ program fd_Kobayashi_model_test
   print*,'---------------------------------'
   print '("  Time       = ", f10.3," seconds." )', finish - start
 
-end program Kobayashi_model_test
+end program fd_Kobayashi_model_test
