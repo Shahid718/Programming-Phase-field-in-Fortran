@@ -24,7 +24,7 @@ ___
 
       * Model B example
 
- * File savings with <span style="color:blue"> **logical unit number**</span>.
+ * File savings with <span style="color:blue"> **newunit**</span> instrinsic function.
 
       * Model A example
 
