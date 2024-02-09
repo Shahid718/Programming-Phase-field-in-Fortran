@@ -52,8 +52,6 @@ program fd_feCr_test
   real ( kind = 8 )   , dimension ( Nx, Ny ) :: dfdcr, dummy_cr, lap_dummy
   integer ( kind = 4 )            :: i, j, jp, jm, ip, im
 
-  open ( 1, file = "feCr.dat" )
-
   !--- initial microstructure
 
   call cpu_time ( start )
@@ -120,8 +118,10 @@ program fd_feCr_test
 
   call cpu_time ( finish )
 
-  !--- write concentration on the file and closes it
+  !--- Open the file, write concentration on the file, and close it
 
+  open ( 1, file = "feCr.dat" )
+  
   do i = 1, Nx
      write( 1, * ) ( cr(i,j), j = 1, Ny )
   end do
