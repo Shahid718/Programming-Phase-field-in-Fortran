@@ -20,10 +20,6 @@ ___
 
       * *if statement* rather than *if then* construct
 
- * Demonstration of <span style="color:blue"> **concurrent programming technique**</span> .
-
-      * Model B example
-
  * File savings with <span style="color:blue"> **newunit**</span> instrinsic function.
 
       * Model A example
