@@ -1,6 +1,6 @@
 # **Fortran Phase-field Fe-Cr alloy Phase Separation Simulation**
 
-This is a 2D Fortran code of Fe-Cr phase separation. Fe-Cr is one of the most studied alloy by the phase field method. Here we present its phase field simulation using model B &mdash; conserved order parameter .
+This is a 2D Fortran code of Fe-Cr phase separation. Fe-Cr is one of the most studied alloys by the phase field method. Here we present its phase field simulation using model B &mdash; conserved order parameter.
 
 This document presents the code in a self-consistent manner. It is divided into these sections
 
@@ -9,7 +9,7 @@ This document presents the code in a self-consistent manner. It is divided into 
 * Fortran implementation
 * Finite difference codes
 
-The first part describes the phase-field model. Next part presents the numerical simulation method &mdash; finite difference. The third section demonstrates: How to implement the code, and what are the expected outputs? The following section explains the codes. 
+The first part describes the phase-field model. The Next part presents the numerical simulation method &mdash; finite difference. The third section demonstrates: How to implement the code, and what are the expected outputs? The following section explains the codes. 
 
 # **Mathematical Model**
 
@@ -19,7 +19,7 @@ The total free energy **$F$** is given by
 
 $$ F=\int\left[f\left(c\right)+\kappa\left(\nabla c\right)^2\right]dV$$
 
-Where **$f(c)$** is the bulk chemical free energy density, **$c$** is the $Cr$ concentration as a conserved order parameter, $\kappa$ is gradient energy coefficient. 
+Where **$f(c)$** is the bulk chemical free energy density, **$c$** is the $Cr$ concentration as a conserved order parameter, $\kappa$ is the gradient energy coefficient. 
 
 The bulk free energy is 
 
@@ -29,7 +29,7 @@ where $G^0_{Fe}$ and $G^0_{Cr}$ are molar Gibb's free energies of pure **$Fe$** 
 
 ### **Equation of evolution**
 
-The evolution of conserved order parameter is linearly proportional to the variational derivative of free energy function . Mathematically it is
+The evolution of the conserved order parameter is linearly proportional to the variational derivative of the free energy function. Mathematically it is
 
 $$	\frac{{\partial c}}{\partial t}=\nabla\left[M\nabla\left(\frac{\delta F}{\delta c}\right)\right]$$
 
@@ -51,17 +51,17 @@ The evolution equation now becomes
 
 $$\frac{\partial c}{\partial t}=\nabla^2M\left(\frac{\partial f}{\partial c}-\kappa \nabla^2 c\right)$$
 
-The derivative of free energy function is 
+The derivative of the free energy function is 
 
 $$ \frac{\partial f}{\partial c}= -c( 20500-9.68T)+(1-c)(20500.0-9.68T) + RT[log(c)-log(1-c) ] $$
 
 # **Numerical method**
 
-Since the model is a set of partial differential equations (PDE), various numerical methods can be used for solving the equations. We use finite difference methods here because of its simplicity.
+Since the model is a set of partial differential equations (PDE), various numerical methods can be used for solving the equations. We use finite difference methods here because of simplicity.
 
 Finite difference algorithms are simple and direct way to solve the phase field equations. They convert derivative to difference equation at each grid point to perform computation. 
 
-There are various FD methods like backward difference, forward difference, centered difference and centered second difference methods. For our Laplace operator evaluation, we use five point stencils and is given by
+There are various FD methods like backward difference, forward difference, centered difference, and centered second difference methods. For our Laplace operator evaluation, we use five point stencils and is given by
 
 $$\nabla^2 c = \frac{c_{i+1,j} + c_{i-1,j} + c_{i,j+1} + c_{i,j-1} -4c_{i,j}} {dxdy}$$
 
@@ -187,7 +187,7 @@ set palette defined ( 0 'blue', 0.5 'grey', 1 'red' )
 set pm3d map interpolate 9,9
 splot 'FeCr.dat' matrix with pm3d notitle
 ```
-**Note:** The first line is the path where the file is located. In our case it is placed in **D** drive. The other commands remain the same!
+**Note:** The first line is the path where the file is located. In our case, it is placed in **D** drive. The other commands remain the same!
 
 The output is
 
@@ -195,7 +195,7 @@ The output is
 
 # **Finite difference codes**
 
-Athough the code is written with related comments and declaration at each stage and is easy to follow, we will nonetheless briefly describe the code. 
+Although the code is written with related comments and declarations at each stage and is easy to follow, we will nonetheless briefly describe the code. 
 
 ## **fd_FeCr.f90** and  **fd_FeCr_dislin.f90**
 
@@ -204,7 +204,7 @@ The difference between two files is of these two statements
 1. use Dislin
 2. call qplclr ( cr, Nx, Ny)
 
-The Fortran program starts with the **program fd_FeCr_test** and ends with **end program fd_FeCr_test**. The second statement **use Dislin** is used to include the Dislin library. **implicit none** is required to avoid any default behaviour of the compiler for data declaration.
+The Fortran program starts with the **program fd_FeCr_test** and ends with **end program fd_FeCr_test**. The second statement **use Dislin** is used to include the Dislin library. **implicit none** is required to avoid any default behavior of the compiler for data declaration.
 
 ```Fortran
 program fd_FeCr_test
@@ -284,7 +284,7 @@ The section implements the initial microsturucture. `call random_number ( r )` i
 ```
 ### **Evolution**
 
-We evaluated the expressions `RT = gas_constant*temperature` and `dxdy` = `dx x dy` to avoid the same evaluation at each timestep. Next is the start of time discretization. `time_loop` is the `construct name` for the time do loop. We use concurrent programming technique with the construct `do concurrent ( i = 1 : Nx, j = 1 : Ny )` for spatial discretization. Note the use of `construct name` i.e., `spatial_loop`
+We evaluated the expressions `RT = gas_constant*temperature` and `dxdy` = `dx x dy` to avoid the same evaluation at each timestep. Next is the start of time discretization. `time_loop` is the `construct name` for the time do loop. `row` and `column` are the construct names for the spatial discretization.
 
 ```Fortran
   !--- start microstructure evolution
@@ -294,7 +294,8 @@ We evaluated the expressions `RT = gas_constant*temperature` and `dxdy` = `dx x 
 
   time_loop: do tsteps = 1, nsteps
 
-      spatial_loop: do concurrent ( i = 1 : Nx, j = 1 : Ny )
+     row: do i = 1, Nx
+        column: do j = 1, Ny
 ```
 
 This calculates the derivative of free energy at each grid point. It is normalized with `RT`
@@ -349,7 +350,8 @@ This maintains the order parameters between `0` and `1`. The evaluation at each 
         if ( cr(i,j) >= 0.99999 ) cr(i,j) = 0.99999
         if ( cr(i,j) < 0.00001)  cr(i,j) = 0.00001
 
-   end do spatial_loop
+        end do column
+     end do row
 ```
 
 This section of the code prints the `done steps` on the screen.
@@ -365,7 +367,7 @@ The microstructure evolution finishes here
 ```Fortran
      !--- end microstructure evolution
 
-  end do temporal_loop
+  end do time_loop
 ```
 
 It takes the final time used for calculation, writes the value of `concentration` in the file `FeCr.dat` and closes the file.
@@ -382,7 +384,7 @@ It takes the final time used for calculation, writes the value of `concentration
   close( 1 )
 ```
 
-This is the quick dislin plot in colors and the last statement terminates the program. Note it is only in the file **fd_FeCr_dislin.f90**
+This is the quick dislin plot in colors. Note it is only in the file **fd_FeCr_dislin.f90**. The last statement terminates the program.
 
 ```Fortran
   !--- quick Dislin color plot
