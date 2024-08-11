@@ -65,9 +65,10 @@ program fd_feCr_test
   RT = gas_constant*temperature
   dxdy = dx*dy
 
-  temporal_loop: do tsteps = 1, nsteps
+  time_loop: do tsteps = 1, nsteps
 
-     spatial_loop: do concurrent ( i = 1 : Nx, j = 1 : Ny )
+     row: do i = 1, Nx
+        column: do j = 1, Ny
 
         !--- free energy derivative
 
@@ -114,7 +115,8 @@ program fd_feCr_test
 
      !--- end microstructure evolution
 
-  end do temporal_loop
+     end do column
+  end do row
 
   call cpu_time ( finish )
 
