@@ -68,9 +68,9 @@ The simulations were performed on the system with the following details:
 *  Procedural programming
 
       * [internal procedures](https://github.com/Shahid718/Fortran-Phase-field-codes-using-Internal-Procedures)
-      * external procedures
+      * [external procedures](https://github.com/Shahid718/Fortran-Phase-Field-Codes-Using-External-Procedures)
                
-* Modular programming
+* [Modular programming](https://github.com/Shahid718/Fortran-Phase-Field-Codes-Using-Modules)
 
 * Object-oriented programming
 
