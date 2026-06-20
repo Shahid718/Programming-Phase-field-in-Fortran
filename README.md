@@ -72,13 +72,14 @@ The simulations were performed on the system with the following details:
                
 * [Modular programming](https://github.com/Shahid718/Fortran-Phase-Field-Codes-Using-Modules)
 
-* Object-oriented programming
+* [Object-oriented programming](https://github.com/Shahid718/Fortran-Phase-Field-Codes-With-Object-Oriented-Programming)
 
 * Parallel programming with 
 
-  * Co-arrays
   * OpenMP
+  * Do Concurrent
   * MPI
+  * Co-arrays
     
 * GPU programming with 
 
