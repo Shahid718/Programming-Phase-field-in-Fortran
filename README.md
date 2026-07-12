@@ -76,8 +76,8 @@ The simulations were performed on the system with the following details:
 
 * Parallel programming with 
 
-  * OpenMP
-  * Do Concurrent
+  * [OpenMP](https://github.com/Shahid718/OpenMP-PhaseField-Solver)
+  * [Do Concurrent](https://github.com/Shahid718/Compiler-Driven-Parallelism-in-Modern-Fortran-using-DO-CONCURRENT)
   * MPI
   * Co-arrays
     
